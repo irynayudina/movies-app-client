@@ -13,6 +13,7 @@
   }
 }
 
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -34,5 +35,478 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+.onefilm{
+  background-color: red;
+  margin: 30px;
+}
+*{  
+  transition: transform 330ms ease-in-out;
+  
+}
+h1 {
+  text-align: center;
+}
+.add-films h1{
+  text-align: center;
+  color: blueviolet;
+}
+.hr {
+  color: blueviolet;
+  margin-bottom: 20px;
+  width: 100%;
+  border-bottom: 2px solid blueviolet;
+}
+.item-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2em;
+}
+.card {
+  text-align: center;
+  padding: 10px;
+  width: 300px;
+  border-radius: 5px;
+  padding: 1em;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.card:hover{
+  transform: scale(1.05);
+}
+.comment{
+  text-align: left;
+  width: calc(100% - 2em);
+  border-radius: 5px;
+  padding: 1em;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+img {
+  width: auto;
+  height: 200px;
+}
+.page-header{
+  min-width: 100px;
+  /* padding-top: 20px; */
+  padding-bottom: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 50px;
+  background-color: blueviolet;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.logo{
+  text-align: left;
+  color: white;
+  max-width: 100;
+}
+a{
+  text-decoration: none;
+}
+a:hover h1{
+  color:rgb(253, 114, 188);
+}
+.searchbar {
+  float: right;
+}
+.searchbar input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
+.searchbar button {
+  float: right;
+  padding: 6px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: deeppink;
+  color: white;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+.searchbar button:hover {
+  background: white;
+  border-left: 2px solid #ddd;
+  color: deeppink;
+}
+.login{
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  background-color:deeppink;
+  padding: 10px;
+}
+.login:hover{
+  color: deeppink;
+  background-color: white;
+}
+.page-body-films{
+  padding-top: 10px;
+  min-width: 100px;
+  min-height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.userlinks {
+  border-radius: 7px;
+  width: 60px;
+  font-size: 40px;
+  text-align: center;
+}
+.userlinks .hr{
+  margin-bottom: 0;
+  border-color: #ddd !important;
+}
+.dropdown{
+  right: 141px;
+  width: 210px;
+  background-color: white;
+}
+.userlinks:hover .dropdown{
+  border: 1px solid #ddd;
+  border-top-left-radius: 10px;
+}
+.dropdown-clicked{
+  position: relative;
+  right: 141px;
+  width: 210px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-top-left-radius: 10px;
+}
+.userlinks:hover *{
+ color: deeppink;
+ position:relative;
+ display: block;
+ z-index: 100;
+}
+.err2{
+  color:blueviolet;
+}
+.hiddenusermenue-clicked{
+  color: deeppink;
+  position:relative;
+  display: block;
+  z-index: 100;
+  text-align: left;
+  padding-top: 3px;
+  font-size: 15px;
+}
+.hiddenusermenue-clicked:first-child{
+  padding-top: 10px;
+}
+.hiddenusermenue{
+  text-align: left;
+  padding-top: 3px;
+  display: none;
+  font-size: 15px;
+  color: black;
+}
+.hiddenusermenue:first-child{
+  padding-top: 10px;
+}
+.add-films{
+  width:70vw;
+  background-color: #ddd;
+  padding: 10px;
+  margin: auto;
+  margin-top: 30px;
+  border-radius: 20px;
+}
+.add-review{
+  width:70vw;
+  background-color: #ddd;
+  padding: 10px;
+  border-radius: 10px;
+  width: calc(100% - 20px);
+}
+.add-review h2{
+  text-align: left;
+  font-size: large;
+}
+.hiddenSelect{
+  display: none;
+}
+.add-films input, select, textarea {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.add-review input, select, textarea {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.add-films button[type=submit] {
+  width: 100%;
+  background-color: blueviolet;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.add-review button[type=submit] {
+  width: 100%;
+  background-color: blueviolet;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.add-films button[type=submit]:hover {
+  background-color: deeppink;
+}
+.add-review button[type=submit]:hover {
+  background-color: deeppink;
+}
+.modal button:hover{
+  background-color: deeppink;
+}
+.modal button{
+  background-color: blueviolet;
+  color: white;
+  border: 2px solid blueviolet;
+}
+.filer-films{
+  width:250px;
+  background-color: #ddd;;
+  padding: 10px;
+}
+.filer-films input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.filer-films input[type=submit] {
+  width: 100%;
+  background-color: blueviolet;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.filer-films input[type=submit]:hover {
+  background-color: deeppink;
+}
+.addtowl{
+  width: 100%;
+  background-color: blueviolet;
+  color: white;
+  font-weight: 700;
+  font-size: medium;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  } 
+  .addtowl:hover{
+  background-color: deeppink;
+    
+  }
+div.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+.display{
+  border: 2px solid #ddd;
+  border-radius: 1%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2em;
+}
+.display-pl{
+  border: 2px solid #ddd;
+  border-radius: 1%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2em;
+}
+.modal-bg{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: rgba(40, 44, 52, 0.133);
+  z-index: 1;
+}
+.modal{
+  margin: auto;
+  background-color: white;
+  z-index: 200;
+  padding: 10px;
+}
+.close{
+  float: right;
+  padding: 10px;
+  font-weight: 700;
+  color: deeppink;
+  z-index: 300;
+}
+.close-film{
+  float: right;
+  font-weight: 700;
+  color: blueviolet;
+  z-index: 300;
+}
+.watch-film{
+  float: left;
+  font-weight: 700;
+  color: blueviolet;
+  z-index: 300;
+}
+.date-review{
+  float: right;
+  margin: 0;
+}
+.comment-username{
+  /* width: 100px; */
+}
+.delete-comment{
+  float: right;
+  color: deeppink;
+  cursor: pointer;
+  width: auto;
+  border:  1px solid #ddd;
+  border-radius: 5px;
+  padding: 5px;
+}
+.delete-comment:hover {
+  font-weight: 700;
+  transform: scale(1.1);
+}
+.close:hover{
+  cursor: pointer;
+  color: deeppink;
+}
+.close-film:hover{
+  color: deeppink;
+  cursor: pointer;
+}
+.watch-film:hover{
+  cursor: pointer;
+  color: deeppink;
+
+}
+.hidden {
+  display: none;
+}
+.display a{
+  color: black;
+  text-decoration: none;
+}
+.display-pl a{
+  color: black;
+  text-decoration: none;
+}
+footer{
+  margin-top: 20px;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  border: 2px solid #ddd;
+}
+footer h2{
+  text-align: center;
+  color: blueviolet;
+}
+footer h2 small{
+  text-align: center;
+  color: blueviolet;
+}
+footer h2 a:hover{
+  color: deeppink;
+}
+.loading{
+  color: blueviolet;
+}
+.err {
+  color: deeppink;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.playlist-control{
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 300px;
+}
+.make-public{
+  color: white;
+  background-color: #ddd;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.make-public-private{
+  color: white;
+  background-color: deeppink;
+  border: 1px solid deeppink;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.delete-playlist{
+  color: deeppink;
+  cursor: pointer;
+  position:relative;
+  z-index: 400;
+}
+.hover-hide {
+  display: none;
+}
+/* smartphones, touchscreens */
+@media (hover: none) and (pointer: coarse) {
+  .delete-playlist{
+    z-index: 400;
+  }
+}
+/* mouse, touch pad */
+@media (hover: hover) and (pointer: fine) {
+  .delete-playlist{
+    color: deeppink;
+    cursor: pointer;
+    position:relative;
+    display: none;
+    z-index: 400;
+  }
+  .card:hover .delete-playlist{
+    display: block;
   }
 }

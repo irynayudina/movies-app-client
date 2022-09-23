@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Container from 'react-bootstrap/Container';
+import { BrowserRouter, Route, Routes, Switch, Redirect } from 'react-router-dom';
+import Films from './components/Films'
+import Film from './components/Film'
+import Playlists from './components/Playlists'
+import Playlist from './components/Playlist'
+import PasswordReset from './components/PasswordReset'
+import FilmAdd from './components/FilmAdd'
+import LogIn from './components/LogIn'
+import Register from './components/Register'
+import PlaylistsPublic from  './components/PlaylistsPublic'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>      
+        <Route path="/" element={<Films />} />
+        <Route path="/films/:fid" element={<Film />} />
+        <Route path="/user/:id/playlists" element={<Playlists />} />
+        <Route path="/user/:id/playlists/public" element={<PlaylistsPublic />} />
+        <Route path="/user/:id/playlist/:pid" element={<Playlist />} />
+        <Route path="/user/:id/passwordreset" element={<PasswordReset />} />
+        <Route path="/developer" element={<FilmAdd />} />
+        <Route path="/user/login" element={<LogIn />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>      
+    </BrowserRouter>
   );
 }
 

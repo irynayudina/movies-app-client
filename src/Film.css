@@ -1,0 +1,77 @@
+:root {
+    --size: brown;
+  }
+.page-body{
+    margin: auto;
+    margin-top: 10px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    width: 80%;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 2em;
+  }
+.display-film{
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 2em;
+  }
+  .film-image{
+    width: 200px;
+  }
+  .film-image img{
+    width: 100%;
+    height:auto;
+    box-shadow: rgba(0, 0, 0, 0.4) 4px 8px 10px 0px;
+  }
+  .addtowl{
+  width: 100%;
+  background-color: blueviolet;
+  color: white;
+  font-weight: 700;
+  font-size: medium;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  } 
+  .display-film button:hover{
+    background-color: deeppink;
+  }
+  .info-film{
+    min-width: 300px;
+  }
+  .description-xxl p{
+    max-width: 60vw;
+    max-width: calc(70vw - 200px);
+  }
+  .description-xl p{
+    max-width: calc(70vw - 200px);
+  }
+  .description-lg p{
+    max-width: 40vw;max-width: calc(70vw - 200px);
+  }
+  .description-md p{
+    max-width: 30vw;max-width: calc(70vw - 200px);
+  }
+  .description-sm p{
+    max-width: 500px;max-width: 100%;
+  }
+  .description-xs p{
+    max-width: 100%;
+  }
+  .reviews{ 
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 30px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+  }
