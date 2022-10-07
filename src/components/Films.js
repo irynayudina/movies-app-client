@@ -20,7 +20,7 @@ const Films = () => {
         setScreenSize("sm")
       } if(s >= 683){
         setScreenSize("md")
-      } else if(s >= 992){
+      } else if(s >= 880){
         setScreenSize("lg")
       } else if(s >= 1230){
         setScreenSize("xl")
