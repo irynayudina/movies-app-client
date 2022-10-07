@@ -341,12 +341,14 @@ div.container {
   gap: 2em;
 }
 .display-xs{
+  border: none;
   padding-top: 20px;
   padding-bottom: 20px;
   width: 100%;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 0.5em;
 }
 .display-pl{
   border: 2px solid #ddd;
