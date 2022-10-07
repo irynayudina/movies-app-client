@@ -148,11 +148,38 @@ const arrayBufferToBase64 = (buffer) => {
   }
   const [filterToggle, setFilterToggle] = useState("")
   useEffect(()=>{
+    if(window.innerWidth >= 880){
+      setFilterToggle(
+        <div className={`filer-films`}> 
+        <form action="">
+          <label htmlFor="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Film name.." />
+          <label htmlFor="actors">Actors</label>
+          <input type="text" id="actors" name="actors" placeholder="Actors separated by ," />
+          <label htmlFor="directors">Directors</label>
+          <input type="text" id="directors" name="directors" placeholder="Directors separated by ," />
+          <label htmlFor="typefm">Type</label>
+          <select id="typefm" name="typefm">
+            <option value="">Any</option>
+            <option value='series'>Series</option>
+            <option value='movie'>Movie</option>
+          </select>
+          <Select />
+          <label htmlFor="sortWay">Sort results by</label>
+          <select id="sortWay" name="sortWay">
+            <option value="yearSort">Year</option>
+            <option value="imdbSort">IMDB</option>
+          </select>
+          <input type="submit" value="Show" />
+        </form>
+        </div>
+      )
+    } else {
       setFilterToggle(
         <>
-        <div className={`toggle-filter-films-${screenSize}`} onClick={clickToggle}>
+        <div className={`toggle-filter-films toggle-filter-films-${screenSize}`} onClick={clickToggle}>
           {isClickedFilterToggle ?"Hide Filter" : "Show Filter"}</div>
-        {(isClickedFilterToggle || window.innerWidth >= 880) && 
+        {isClickedFilterToggle && 
         <div className={`filer-films`}> 
         <form action="">
           <label htmlFor="name">Name</label>
@@ -176,7 +203,8 @@ const arrayBufferToBase64 = (buffer) => {
           <input type="submit" value="Show" />
         </form>
         </div>}
-        </>)    
+      </>)
+    }          
   }, [isClickedFilterToggle])
   return  (
   <>

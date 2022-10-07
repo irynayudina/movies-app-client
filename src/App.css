@@ -320,9 +320,22 @@ a:hover h1{
   border-radius: 4px;
   cursor: pointer;
 }
+.toggle-filter-films{
+  display: block;
+  width: 200px;
+  background-color: blueviolet;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 .toggle-filter-films-xs:hover, .toggle-filter-films-sm:hover{
   background-color: deeppink;
-
+}
+.toggle-filter-films{
+  background-color: deeppink;
 }
 .toggle-filter-films-md, .toggle-filter-films-lg, .toggle-filter-films-xl, .toggle-filter-films-xxl{
   display: none;
