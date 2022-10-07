@@ -143,6 +143,7 @@ a:hover h1{
 }
 .login-logged{
   width: auto;
+  white-space: nowrap;
 }
 .login:hover{
   color: deeppink;

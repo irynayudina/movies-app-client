@@ -32,7 +32,7 @@ const Header = (props) =>{
   useEffect(()=>{
     if(user){
       setLink(
-      <div className="login login-logged userlinks" onClick={clickDropdown}><FontAwesomeIcon icon={faUser} /> {user.name}
+      <div className="login login-logged userlinks" onClick={clickDropdown}> <p><FontAwesomeIcon icon={faUser} /> {user.name}</p>
         {isClicked && 
           <div className="dropdown-clicked">
             <div className="hiddenusermenue-clicked">{user?.name}<div className="hr"></div></div>      
