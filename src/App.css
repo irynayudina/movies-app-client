@@ -171,8 +171,6 @@ a:hover h1{
   min-width: 100px;
   min-height: 100px;
   display: block;
-  padding-left: 10px;
-  padding-right: 10px;
 }
 .dropdown{
   right: 141px;
@@ -343,15 +341,12 @@ div.container {
   gap: 2em;
 }
 .display-xs{
-  border: 2px solid #ddd;
-  border-radius: 1%;
   padding-top: 20px;
   padding-bottom: 20px;
   width: 100%;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 2em;
 }
 .display-pl{
   border: 2px solid #ddd;
@@ -529,6 +524,7 @@ footer h2 a:hover{
 }
 .card-xs img{
   max-width: 150px;
+  height: auto;
 }
 /* mouse, touch pad */
 @media (hover: hover) and (pointer: fine) {
