@@ -146,7 +146,7 @@ const arrayBufferToBase64 = (buffer) => {
   return  (
   <>
   <Header onSearchName={searchbarHandler}/>
-  <div className="page-body-films">
+  <div className={`page-body-films page-body-films-${screenSize}`}>
     <div className="filer-films"> 
       <form action="">
         <label htmlFor="name">Name</label>
@@ -170,7 +170,7 @@ const arrayBufferToBase64 = (buffer) => {
         <input type="submit" value="Show" />
       </form>
     </div>
-    <div className="display">
+    <div className={`display display-${screenSize}`}>
     {isLoading && <h2 className='loading'>Loading...</h2>}
     {!isLoading && films.length === 0 && <h2 className='loading'>Found no movies.</h2>}
       {films.map((film) => (

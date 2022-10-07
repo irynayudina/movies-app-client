@@ -72,6 +72,9 @@ h1 {
   padding: 1em;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
+.card img{
+  max-width: 300px;
+}
 .card:hover{
   transform: scale(1.05);
 }
@@ -160,6 +163,14 @@ a:hover h1{
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.page-body-films-xs{
+  padding-top: 10px;
+  min-width: 100px;
+  min-height: 100px;
+  display: block;
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -326,6 +337,17 @@ div.container {
   padding-top: 20px;
   padding-bottom: 20px;
   width: 80%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2em;
+}
+.display-xs{
+  border: 2px solid #ddd;
+  border-radius: 1%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 100%;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -500,10 +522,13 @@ footer h2 a:hover{
 .card-xs {
   text-align: center;
   padding: 10px;
-  width: 220px;
+  width: 150px;
   border-radius: 5px;
   padding: 1em;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.card-xs img{
+  max-width: 150px;
 }
 /* mouse, touch pad */
 @media (hover: hover) and (pointer: fine) {
