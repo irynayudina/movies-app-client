@@ -89,7 +89,7 @@ img {
 .page-header{
   min-width: 100px;
   /* padding-top: 20px; */
-  padding-bottom: 30px;
+  padding-bottom: 40px;
   padding-left: 10px;
   padding-right: 10px;
   height: 50px;
@@ -149,11 +149,6 @@ a:hover h1{
   z-index: 900;
   margin-bottom: 5px;
 }
-/* .login-logged p{
-  display: inline-block;
-  width: auto;
-  white-space: nowrap;
-} */
 .login:hover{
   color: deeppink;
   background-color: white;
@@ -501,6 +496,14 @@ footer h2 a:hover{
 }
 .page-header-sm .searchbar, .page-header-xs .searchbar{
   margin-bottom: 10px;
+}
+.card-xs {
+  text-align: center;
+  padding: 10px;
+  width: 220px;
+  border-radius: 5px;
+  padding: 1em;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 /* mouse, touch pad */
 @media (hover: hover) and (pointer: fine) {

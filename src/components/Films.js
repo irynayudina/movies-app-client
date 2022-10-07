@@ -11,6 +11,44 @@ const Films = () => {
       "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
     }
   };
+  const [screenSize, setScreenSize] = useState(window.innerWidth) 
+  useEffect(()=>{
+    let s = window.innerWidth
+      if(s<576){
+        setScreenSize("xs")
+      } else if(s >= 576){
+        setScreenSize("sm")
+      } if(s >= 683){
+        setScreenSize("md")
+      } else if(s >= 992){
+        setScreenSize("lg")
+      } else if(s >= 1230){
+        setScreenSize("xl")
+      } else if(s >= 1400){
+        setScreenSize("xxl")
+      }
+    function handleResize() {
+      console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
+      let s = window.innerWidth
+      if(s<580){
+        setScreenSize("xs")
+      } if(s >= 580){
+        setScreenSize("sm")
+      } if(s >= 683){
+        setScreenSize("md")
+      } if(s >= 992){
+        setScreenSize("lg")
+      } if(s >= 1230){
+        setScreenSize("xl")
+      } if(s >= 1400){
+        setScreenSize("xxl")
+      }
+      console.log(screenSize)
+    }
+    window.addEventListener('resize', handleResize);
+    return () => {window.removeEventListener('resize', handleResize)}    
+  },[screenSize])
+
   const url = new URL(window.location.href);
   const q = url.search;
   const [isLoading, setIsLoading] = useState(false);
@@ -136,7 +174,7 @@ const arrayBufferToBase64 = (buffer) => {
     {isLoading && <h2 className='loading'>Loading...</h2>}
     {!isLoading && films.length === 0 && <h2 className='loading'>Found no movies.</h2>}
       {films.map((film) => (
-        <div className='card' key={film._id}>
+        <div className={`card card-${screenSize}`} key={film._id}>
         <a href={"https://movies-app-playlists.netlify.app/films/id?id="+film._id}>
         <img src={film.image} alt='' />
         <h3>{film.name}</h3></a>
