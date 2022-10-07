@@ -119,7 +119,6 @@ const Reviews = () =>{
             <div className='comment-username'><a href={r?.user == user?._id ? `https://movies-app-playlists.netlify.app/user/${r?.user}/playlists` : `https://movies-app-playlists.netlify.app/user/${r?.user}/playlists/public?uid=${r?.user}&uname=${r?.username}`}>
                 {r?.username}
             </a></div>
-            <p className='delete-playlist' onClick={()=>removeComment(r?._id)}>delete</p>
             <p className='err'>{r.rating}</p>
             <p>{r.text}</p>
             <p className='date-review'><small>{r.createdAt.slice(0,10)}</small></p>
