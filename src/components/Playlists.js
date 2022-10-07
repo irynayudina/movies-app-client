@@ -74,7 +74,7 @@ const Playlists = () =>{
         {!isLoading && playlists.length === 0 && <h2 className='loading'>Found no playlists.</h2>}
         {!isLoading && playlists.length !== 0 && <>
           {playlists.map((pl) => (
-            <div className='card' key={pl._id}>
+            <div className='card-playlist' key={pl._id}>
               <div className='playlist-control'>
               {!pl.isPublic && <div className='make-public' onClick={()=>makePublic(pl._id)}>make public</div>}
               {pl.isPublic && <div className='make-public-private' onClick={()=>makePublic(pl._id)}>make private</div>}                

@@ -75,6 +75,14 @@ h1 {
   padding: 1em;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
+.card-playlist{
+  text-align: center;
+  padding: 10px;
+  width: 300px;
+  border-radius: 5px;
+  padding: 1em;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
 .card-xs, .card-sm {
   text-align: center;
   padding: 10px;
@@ -181,7 +189,7 @@ a:hover h1{
   padding-left: 10px;
   padding-right: 10px;
 }
-.page-body-films-xs, .page-body-films-sm, .page-body-films-md{
+.page-body-films-xs, .page-body-films-sm{
   padding-top: 10px;
   min-width: 100px;
   min-height: 100px;
@@ -355,7 +363,7 @@ div.container {
   flex-wrap: wrap;
   gap: 2em;
 }
-.display-xs, .display-sm, .display-md{
+.display-xs, .display-sm{
   border: none;
   padding-top: 20px;
   padding-bottom: 20px;
