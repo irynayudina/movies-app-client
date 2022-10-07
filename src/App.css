@@ -79,8 +79,8 @@ h1 {
 .card:hover{
   transform: scale(1.05);
 }
-.card-xs:hover{
-  transform: scale(1.02);
+.card-xs:hover, .card-sm:hover{
+  transform: scale(1.03);
 }
 .comment{
   text-align: left;
@@ -170,7 +170,7 @@ a:hover h1{
   padding-left: 10px;
   padding-right: 10px;
 }
-.page-body-films-xs{
+.page-body-films-xs, .page-body-films-sm, .page-body-films-md{
   padding-top: 10px;
   min-width: 100px;
   min-height: 100px;
@@ -344,7 +344,7 @@ div.container {
   flex-wrap: wrap;
   gap: 2em;
 }
-.display-xs{
+.display-xs, .display-sm, .display-md{
   border: none;
   padding-top: 20px;
   padding-bottom: 20px;
@@ -520,7 +520,7 @@ footer h2 a:hover{
 .page-header-sm .searchbar, .page-header-xs .searchbar{
   margin-bottom: 10px;
 }
-.card-xs {
+.card-xs, .card-sm {
   text-align: center;
   padding: 10px;
   width: 150px;
@@ -528,7 +528,15 @@ footer h2 a:hover{
   padding: 5px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
-.card-xs img{
+.card-md{
+  text-align: center;
+  padding: 10px;
+  width: 150px;
+  border-radius: 5px;
+  padding: 1em;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.card-xs img, .card-sm img, .card-md img{
   max-width: 150px;
   height: auto;
 }
