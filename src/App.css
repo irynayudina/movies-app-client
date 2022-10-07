@@ -141,6 +141,13 @@ a:hover h1{
   background-color:deeppink;
   padding: 10px;
 }
+.login-logged{
+  padding-bottom: 0px;
+  padding-top: 0px;
+  border-radius: 5px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
 .login-logged p{
   display: inline-block;
   width: auto;
@@ -180,11 +187,9 @@ a:hover h1{
 }
 .dropdown-clicked{
   position: relative;
-  right: 141px;
-  width: 210px;
+  min-width: 180px;
   background-color: white;
   border: 1px solid #ddd;
-  border-top-left-radius: 10px;
 }
 .userlinks:hover *{
  color: deeppink;
