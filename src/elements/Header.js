@@ -34,8 +34,7 @@ const Header = (props) =>{
       setLink(
       <div className="login login-logged" onClick={clickDropdown}> <p><FontAwesomeIcon icon={faUser} /> {user.name}</p>
         {isClicked && 
-          <div className="dropdown-clicked">
-            <div className="hiddenusermenue-clicked">{user?.name}<div className="hr"></div></div>      
+          <div className="dropdown-clicked">     
             <div className="hiddenusermenue-clicked"><a href={`https://movies-app-playlists.netlify.app/user/${user._id}/playlists`}>My watchlists</a></div>
             <div className="hiddenusermenue-clicked"><a href={`https://movies-app-playlists.netlify.app/user/${user._id}/passwordreset`}>Change password</a></div>
             <div className="hiddenusermenue-clicked"><a href="" onClick={exit}>Exit</a></div>
