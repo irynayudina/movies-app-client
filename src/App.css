@@ -74,9 +74,13 @@ h1 {
 }
 .card img{
   max-width: 300px;
+  height: auto;
 }
 .card:hover{
   transform: scale(1.05);
+}
+.card-xs:hover{
+  transform: scale(1.02);
 }
 .comment{
   text-align: left;
@@ -521,7 +525,7 @@ footer h2 a:hover{
   padding: 10px;
   width: 150px;
   border-radius: 5px;
-  padding: 1em;
+  padding: 5px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 .card-xs img{
