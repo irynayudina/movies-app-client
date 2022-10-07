@@ -140,6 +140,7 @@ a:hover h1{
   font-weight: 600;
   background-color:deeppink;
   padding: 10px;
+  cursor: pointer;
 }
 .login-logged{
   padding-bottom: 0px;
@@ -148,11 +149,11 @@ a:hover h1{
   z-index: 900;
   margin-bottom: 5px;
 }
-.login-logged p{
+/* .login-logged p{
   display: inline-block;
   width: auto;
   white-space: nowrap;
-}
+} */
 .login:hover{
   color: deeppink;
   background-color: white;
@@ -167,34 +168,15 @@ a:hover h1{
   padding-left: 10px;
   padding-right: 10px;
 }
-.userlinks {
-  border-radius: 7px;
-  width: 50px;
-  text-align: center;
-}
-.userlinks .hr{
-  margin-bottom: 0;
-  border-color: #ddd !important;
-}
 .dropdown{
   right: 141px;
   width: 210px;
   background-color: white;
 }
-.userlinks:hover .dropdown{
-  border: 1px solid #ddd;
-  border-top-left-radius: 10px;
-}
 .dropdown-clicked{
   position: relative;
   border-top: 2px solid #ddd;
   margin-bottom: 5px;
-}
-.userlinks:hover *{
- color: deeppink;
- position:relative;
- display: block;
- z-index: 100;
 }
 .err2{
   color:blueviolet;

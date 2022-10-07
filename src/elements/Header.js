@@ -32,7 +32,8 @@ const Header = (props) =>{
   useEffect(()=>{
     if(user){
       setLink(
-      <div className="login login-logged" onClick={clickDropdown}> <p><FontAwesomeIcon icon={faUser} /> {user.name}</p>
+      <div className="login login-logged" onClick={clickDropdown} onMouseEnter={() => setIsClicked(true)} onMouseLeave={() => setIsClicked(false)}>
+         <p><FontAwesomeIcon icon={faUser} /> {user.name}</p>
         {isClicked && 
           <div className="dropdown-clicked">     
             <div className="hiddenusermenue-clicked"><a href={`https://movies-app-playlists.netlify.app/user/${user._id}/playlists`}>My watchlists</a></div>
@@ -40,14 +41,13 @@ const Header = (props) =>{
             <div className="hiddenusermenue-clicked"><a href="" onClick={exit}>Exit</a></div>
           </div>
         }
-        {!isClicked &&
-          <div className="dropdown">
-            <div className="hiddenusermenue">{user?.name}<div className="hr"></div></div>      
+        {/* {!isClicked &&
+          <div className="dropdown">    
             <div className="hiddenusermenue"><a href={`https://movies-app-playlists.netlify.app/user/${user._id}/playlists`}>My watchlists</a></div>
             <div className="hiddenusermenue"><a href={`https://movies-app-playlists.netlify.app/user/${user._id}/passwordreset`}>Change password</a></div>
             <div className="hiddenusermenue"><a href="" onClick={exit}>Exit</a></div>
           </div>
-        }
+        } */}
       </div>)
     } else {
       setLink(<a href="https://movies-app-playlists.netlify.app/user/login"><div className="login">Log in</div></a>)
