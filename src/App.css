@@ -497,6 +497,20 @@ footer h2 a:hover{
     z-index: 400;
   }
 }
+.logo-sm, .logo-xs{
+  font-size: 10px !important;
+  color: red;  
+  max-width: 100;
+}
+.page-header-sm, .page-header-xs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+}
+.page-header-sm .searchbar, .page-header-xs .searchbar{
+  margin-bottom: 10px;
+}
 /* mouse, touch pad */
 @media (hover: hover) and (pointer: fine) {
   .delete-playlist{

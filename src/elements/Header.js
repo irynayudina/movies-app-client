@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 
 const Header = (props) =>{
+  const [screenSize, setScreenSize] = useState(window.innerWidth) 
   const submitHandler = (event) =>{
     // console.log(event)
     // event.preventDefault()
@@ -52,8 +53,46 @@ const Header = (props) =>{
     }
     
   }, [user, isClicked])
+  useEffect(()=>{
+    let s = window.innerWidth
+      if(s<576){
+        setScreenSize("xs")
+      } else if(s >= 576){
+        setScreenSize("sm")
+      } if(s >= 683){
+        setScreenSize("md")
+      } else if(s >= 992){
+        setScreenSize("lg")
+      } else if(s >= 1230){
+        setScreenSize("xl")
+      } else if(s >= 1400){
+        setScreenSize("xxl")
+      }
+    function handleResize() {
+      console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
+      let s = window.innerWidth
+      if(s<580){
+        setScreenSize("xs")
+      } if(s >= 580){
+        setScreenSize("sm")
+      } if(s >= 683){
+        setScreenSize("md")
+      } if(s >= 992){
+        setScreenSize("lg")
+      } if(s >= 1230){
+        setScreenSize("xl")
+      } if(s >= 1400){
+        setScreenSize("xxl")
+      }
+      console.log(screenSize)
+    }
+    window.addEventListener('resize', handleResize);
+    return () => {window.removeEventListener('resize', handleResize)}
+    
+  },[screenSize])
+  
   return (
-    <div className="page-header">
+    <div className={`page-header page-header-${screenSize}`}>
       <a href='https://movies-app-playlists.netlify.app/'><div className="logo"><h1>Movies App</h1></div></a>
       <div className="searchbar">
         <form action="https://movies-app-playlists.netlify.app/" onSubmit={submitHandler}>
