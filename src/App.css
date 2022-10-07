@@ -193,9 +193,7 @@ a:hover h1{
   padding-top: 10px;
   min-width: 100px;
   min-height: 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;  
+  display: block;
 }
 .dropdown{
   right: 141px;
@@ -311,6 +309,9 @@ a:hover h1{
   background-color: #ddd;
   padding: 10px;
 }
+.toggle-filter-films-xs .filer-films, .toggle-filter-films-sm .filer-films{
+  margin: auto;
+}
 .toggle-filter-films-xs, .toggle-filter-films-sm{
   display: block;
   width: 200px;
@@ -321,6 +322,7 @@ a:hover h1{
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  margin: auto;
 }
 .toggle-filter-films{
   display: block;
@@ -332,11 +334,12 @@ a:hover h1{
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  margin: auto;
 }
 .toggle-filter-films-xs:hover, .toggle-filter-films-sm:hover{
   background-color: deeppink;
 }
-.toggle-filter-films{
+.toggle-filter-films:hover{
   background-color: deeppink;
 }
 .toggle-filter-films-md, .toggle-filter-films-lg, .toggle-filter-films-xl, .toggle-filter-films-xxl{
