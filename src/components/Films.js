@@ -148,7 +148,7 @@ const arrayBufferToBase64 = (buffer) => {
   }
   const [filterToggle, setFilterToggle] = useState("")
   useEffect(()=>{
-    if(window.innerWidth >= 880){
+    if(window.innerWidth >= 683){
       setFilterToggle(
         <div className={`filer-films`}> 
         <form action="">
@@ -205,7 +205,7 @@ const arrayBufferToBase64 = (buffer) => {
         </div>}
       </>)
     }          
-  }, [isClickedFilterToggle])
+  }, [isClickedFilterToggle, screenSize])
   return  (
   <>
   <Header onSearchName={searchbarHandler}/>
