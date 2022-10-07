@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react"
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faUser} from '@fortawesome/free-solid-svg-icons'
 
 const Header = (props) =>{
   const [screenSize, setScreenSize] = useState(window.innerWidth) 
@@ -30,7 +32,7 @@ const Header = (props) =>{
   useEffect(()=>{
     if(user){
       setLink(
-      <div className="login userlinks" onClick={clickDropdown}>&#x263A;
+      <div className="login userlinks" onClick={clickDropdown}><FontAwesomeIcon icon={faUser} /> {user.name}
         {isClicked && 
           <div className="dropdown-clicked">
             <div className="hiddenusermenue-clicked">{user?.name}<div className="hr"></div></div>      
