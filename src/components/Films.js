@@ -36,7 +36,7 @@ const Films = () => {
         setScreenSize("sm")
       } if(s >= 683){
         setScreenSize("md")
-      } if(s >= 992){
+      } if(s >= 880){
         setScreenSize("lg")
       } if(s >= 1230){
         setScreenSize("xl")
@@ -142,34 +142,39 @@ const arrayBufferToBase64 = (buffer) => {
     console.log('In Films.js');
     console.log(searchname);
   };  
+  const [isClickedFilterToggle, setIsClickedFilterToggle] = useState(false)
 
   return  (
   <>
   <Header onSearchName={searchbarHandler}/>
   <div className={`page-body-films page-body-films-${screenSize}`}>
-    <div className="filer-films"> 
-      <form action="">
-        <label htmlFor="name">Name</label>
-        <input type="text" id="name" name="name" placeholder="Film name.." />
-        <label htmlFor="actors">Actors</label>
-        <input type="text" id="actors" name="actors" placeholder="Actors separated by ," />
-        <label htmlFor="directors">Directors</label>
-        <input type="text" id="directors" name="directors" placeholder="Directors separated by ," />
-        <label htmlFor="typefm">Type</label>
-        <select id="typefm" name="typefm">
-          <option value="">Any</option>
-          <option value='series'>Series</option>
-          <option value='movie'>Movie</option>
-        </select>
-        <Select />
-        <label htmlFor="sortWay">Sort results by</label>
-        <select id="sortWay" name="sortWay">
-          <option value="yearSort">Year</option>
-          <option value="imdbSort">IMDB</option>
-        </select>
-        <input type="submit" value="Show" />
-      </form>
-    </div>
+    <div className={`toggle-filter-films-${screenSize}`} 
+    onMouseEnter={() => setIsClickedFilterToggle(true)} onMouseLeave={() => setIsClickedFilterToggle(false)}>Filter</div>
+    {(setIsClickedFilterToggle || window.innerWidth >= 880) ? 
+    <div className={`filer-films`}> 
+    <form action="">
+      <label htmlFor="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Film name.." />
+      <label htmlFor="actors">Actors</label>
+      <input type="text" id="actors" name="actors" placeholder="Actors separated by ," />
+      <label htmlFor="directors">Directors</label>
+      <input type="text" id="directors" name="directors" placeholder="Directors separated by ," />
+      <label htmlFor="typefm">Type</label>
+      <select id="typefm" name="typefm">
+        <option value="">Any</option>
+        <option value='series'>Series</option>
+        <option value='movie'>Movie</option>
+      </select>
+      <Select />
+      <label htmlFor="sortWay">Sort results by</label>
+      <select id="sortWay" name="sortWay">
+        <option value="yearSort">Year</option>
+        <option value="imdbSort">IMDB</option>
+      </select>
+      <input type="submit" value="Show" />
+    </form>
+  </div>
+  : ""}    
     <div className={`display display-${screenSize}`}>
     {isLoading && <h2 className='loading'>Loading...</h2>}
     {!isLoading && films.length === 0 && <h2 className='loading'>Found no movies.</h2>}

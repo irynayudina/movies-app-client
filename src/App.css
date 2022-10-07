@@ -305,9 +305,15 @@ a:hover h1{
   border: 2px solid blueviolet;
 }
 .filer-films{
-  width:250px;
-  background-color: #ddd;;
+  width:200px;
+  background-color: #ddd;
   padding: 10px;
+}
+.toggle-filter-films-xs, .toggle-filter-films-sm{
+  display: block;
+}
+.toggle-filter-films-md, .toggle-filter-films-lg, .toggle-filter-films-xl, .toggle-filter-films-xxl{
+  display: none;
 }
 .filer-films input[type=text], select {
   width: 100%;
@@ -375,6 +381,7 @@ div.container {
 }
 .display-pl{
   border: none;
+  border-top: 2px solid #ddd;
   padding-top: 20px;
   padding-bottom: 20px;
   width: 100%;

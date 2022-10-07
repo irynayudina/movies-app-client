@@ -51,15 +51,15 @@ const Header = (props) =>{
     let s = window.innerWidth
       if(s<576){
         setScreenSize("xs")
-      } else if(s >= 576){
+      } if(s >= 576){
         setScreenSize("sm")
       } if(s >= 683){
         setScreenSize("md")
-      } else if(s >= 992){
+      } if(s >= 992){
         setScreenSize("lg")
-      } else if(s >= 1230){
+      } if(s >= 1230){
         setScreenSize("xl")
-      } else if(s >= 1400){
+      } if(s >= 1400){
         setScreenSize("xxl")
       }
     function handleResize() {
