@@ -152,7 +152,7 @@ const arrayBufferToBase64 = (buffer) => {
   <div className={`page-body-films page-body-films-${screenSize}`}>
     <div className={`toggle-filter-films-${screenSize}`} onClick={clickToggle} 
     onMouseEnter={() => setIsClickedFilterToggle(true)} onMouseLeave={() => setIsClickedFilterToggle(false)}>Filter</div>
-    {(setIsClickedFilterToggle || window.innerWidth >= 880) ? 
+    {setIsClickedFilterToggle ? 
     <div className={`filer-films`}> 
     <form action="">
       <label htmlFor="name">Name</label>
