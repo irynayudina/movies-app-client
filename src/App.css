@@ -374,8 +374,7 @@ div.container {
   gap: 0.5em;
 }
 .display-pl{
-  border: 2px solid #ddd;
-  border-radius: 1%;
+  border: none;
   padding-top: 20px;
   padding-bottom: 20px;
   width: 100%;
@@ -549,7 +548,7 @@ footer h2 a:hover{
     display: none;
     z-index: 400;
   }
-  .card:hover .delete-playlist{
+  .card-playlist:hover .delete-playlist{
     display: block;
   }
 }
