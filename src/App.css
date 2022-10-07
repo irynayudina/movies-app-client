@@ -52,6 +52,9 @@ h1 {
   text-align: center;
   color: blueviolet;
 }
+.filter-films{
+  transform: scale(0.75);
+}
 .hr {
   color: blueviolet;
   margin-bottom: 20px;
@@ -64,6 +67,14 @@ h1 {
   flex-wrap: wrap;
   gap: 2em;
 }
+.card {
+  text-align: center;
+  padding: 10px;
+  width: 150px;
+  border-radius: 5px;
+  padding: 1em;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
 .card-xs, .card-sm {
   text-align: center;
   padding: 10px;
@@ -72,35 +83,15 @@ h1 {
   padding: 5px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
-.card-md{
-  text-align: center;
-  padding: 10px;
-  width: 150px;
-  border-radius: 5px;
-  padding: 1em;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-.card-xs img, .card-sm img, .card-md img{
+.card img{
   max-width: 150px;
   height: auto;
 }
-.card {
-  text-align: center;
-  padding: 10px;
-  width: 200px;
-  border-radius: 5px;
-  padding: 1em;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-.card img{
-  max-width: 200px;
-  height: auto;
+.card:hover{
+  transform: scale(1.05);
 }
 .card-xs:hover, .card-sm:hover, .card-md:hover{
   transform: scale(1.03);
-}
-.card:hover{
-  transform: scale(1.05);
 }
 .comment{
   text-align: left;
@@ -180,12 +171,6 @@ a:hover h1{
   color: deeppink;
   background-color: white;
 }
-.page-body-films-xs, .page-body-films-sm, .page-body-films-md{
-  padding-top: 10px;
-  min-width: 100px;
-  min-height: 100px;
-  display: block;
-}
 .page-body-films{
   padding-top: 10px;
   min-width: 100px;
@@ -195,6 +180,12 @@ a:hover h1{
   align-items: flex-start;
   padding-left: 10px;
   padding-right: 10px;
+}
+.page-body-films-xs, .page-body-films-sm, .page-body-films-md{
+  padding-top: 10px;
+  min-width: 100px;
+  min-height: 100px;
+  display: block;
 }
 .dropdown{
   right: 141px;
@@ -353,16 +344,6 @@ div.container {
   background-color: #f2f2f2;
   padding: 20px;
 }
-.display-xs, .display-sm, .display-md{
-  border: none;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.5em;
-}
 .display{
   border: 2px solid #ddd;
   border-radius: 1%;
@@ -373,6 +354,16 @@ div.container {
   justify-content: center;
   flex-wrap: wrap;
   gap: 2em;
+}
+.display-xs, .display-sm, .display-md{
+  border: none;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5em;
 }
 .display-pl{
   border: 2px solid #ddd;
