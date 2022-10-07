@@ -193,7 +193,9 @@ a:hover h1{
   padding-top: 10px;
   min-width: 100px;
   min-height: 100px;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
 }
 .dropdown{
   right: 141px;
