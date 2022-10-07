@@ -180,7 +180,7 @@ const arrayBufferToBase64 = (buffer) => {
         <div className={`toggle-filter-films toggle-filter-films-${screenSize}`} onClick={clickToggle}>
           {isClickedFilterToggle ?"Hide Filter" : "Show Filter"}</div>
         {isClickedFilterToggle && 
-        <div className={`filer-films`}> 
+        <div className={`filer-films filer-films-${screenSize}`}> 
         <form action="">
           <label htmlFor="name">Name</label>
           <input type="text" id="name" name="name" placeholder="Film name.." />

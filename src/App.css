@@ -308,6 +308,8 @@ a:hover h1{
   width:200px;
   background-color: #ddd;
   padding: 10px;
+}
+.filer-films-xs, .filer-films-sm{
   margin: auto;
 }
 .toggle-filter-films-xs .filer-films, .toggle-filter-films-sm .filer-films{
@@ -318,8 +320,9 @@ a:hover h1{
   width: 200px;
   background-color: blueviolet;
   color: white;
-  padding-left: 1em;
-  padding-right: 1em;
+  padding: 1em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
   border: none;
   cursor: pointer;
   margin: auto;
