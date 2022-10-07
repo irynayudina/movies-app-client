@@ -150,9 +150,9 @@ const arrayBufferToBase64 = (buffer) => {
   useEffect(()=>{
       setFilterToggle(
         <>
-        <div className={`toggle-filter-films-${screenSize}`} onClick={clickToggle} 
-        onMouseEnter={() => setIsClickedFilterToggle(true)} onMouseLeave={() => setIsClickedFilterToggle(false)}>Filter</div>
-        {isClickedFilterToggle && 
+        <div className={`toggle-filter-films-${screenSize}`} onClick={clickToggle}>
+          {isClickedFilterToggle ?"Hide Filter" : "Show Filter"}</div>
+        {(isClickedFilterToggle || window.innerWidth >= 880) && 
         <div className={`filer-films`}> 
         <form action="">
           <label htmlFor="name">Name</label>
