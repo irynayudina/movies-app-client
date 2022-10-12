@@ -148,7 +148,7 @@ const arrayBufferToBase64 = (buffer) => {
   }
   const [filterToggle, setFilterToggle] = useState("")
   useEffect(()=>{
-    if(window.innerWidth >= 683){
+    if(window.innerWidth >= 880){
       setFilterToggle(
         <div className={`filer-films`}> 
         <form action="">
