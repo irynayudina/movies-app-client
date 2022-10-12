@@ -111,7 +111,7 @@ const Reviews = () =>{
     const editReview = (e, cid) => {
         e.preventDefault();
         if(textValid2){
-            console.log(edit)
+            console.log("edit")
             axios.post('https://movies-catalog-app.herokuapp.com/user/review/update', {
             text: textInp2,
             rating: ratingInp2,
