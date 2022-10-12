@@ -312,7 +312,7 @@ a:hover h1{
 .filer-films-xs, .filer-films-sm, .filer-films-md{
   margin: auto;
 }
-.toggle-filter-films-xs .filer-films, .toggle-filter-films-md, .filer-films{
+.toggle-filter-films-xs .filer-films, .toggle-filter-films-sm .filer-films, .toggle-filter-films-md .filer-films{
   margin: auto;
 }
 .toggle-filter-films, .toggle-filter-films-xs, .toggle-filter-films-sm, .toggle-filter-films-md{
