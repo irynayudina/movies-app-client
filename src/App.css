@@ -333,7 +333,7 @@ a:hover h1{
 .toggle-filter-films:hover{
   background-color: deeppink;
 }
-.toggle-filter-films-md, .toggle-filter-films-lg, .toggle-filter-films-xl, .toggle-filter-films-xxl{
+.toggle-filter-films-lg, .toggle-filter-films-xl, .toggle-filter-films-xxl{
   display: none;
 }
 .filer-films input[type=text], select {
