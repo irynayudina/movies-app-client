@@ -123,7 +123,7 @@ const Reviews = () =>{
             console.log("response after editing")
             console.log(res)
             if(!o.error){
-                // setReview(o)
+                setReview(o)
             }
             })
             .catch((err) => {
