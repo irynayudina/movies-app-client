@@ -189,7 +189,7 @@ a:hover h1{
   padding-left: 10px;
   padding-right: 10px;
 }
-.page-body-films-xs, .page-body-films-sm{
+.page-body-films-xs, .page-body-films-sm, .page-body-films-md{
   padding-top: 10px;
   min-width: 100px;
   min-height: 100px;
@@ -309,13 +309,13 @@ a:hover h1{
   background-color: #ddd;
   padding: 10px;
 }
-.filer-films-xs, .filer-films-sm{
+.filer-films-xs, .filer-films-sm, .filer-films-md{
   margin: auto;
 }
-.toggle-filter-films-xs .filer-films, .toggle-filter-films-sm .filer-films{
+.toggle-filter-films-xs .filer-films, .toggle-filter-films-sm-md, .filer-films{
   margin: auto;
 }
-.toggle-filter-films, .toggle-filter-films-xs, .toggle-filter-films-sm{
+.toggle-filter-films, .toggle-filter-films-xs, .toggle-filter-films-sm, .toggle-filter-films-md{
   display: block;
   width: 200px;
   background-color: blueviolet;
@@ -327,7 +327,7 @@ a:hover h1{
   cursor: pointer;
   margin: auto;
 }
-.toggle-filter-films-xs:hover, .toggle-filter-films-sm:hover{
+.toggle-filter-films-xs:hover, .toggle-filter-films-sm:hover, .toggle-filter-films-md:hover{
   background-color: deeppink;
 }
 .toggle-filter-films:hover{
@@ -390,7 +390,7 @@ div.container {
   flex-wrap: wrap;
   gap: 2em;
 }
-.display-xs, .display-sm{
+.display-xs, .display-sm, .display-md{
   border: none;
   padding-top: 20px;
   padding-bottom: 20px;
