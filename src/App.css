@@ -334,7 +334,7 @@ a:hover h1{
   background-color: deeppink;
 }
 .reviewUpdated{
-  color: #ddd;
+  color: rgb(120, 120, 120);
 }
 .toggle-filter-films-lg, .toggle-filter-films-xl, .toggle-filter-films-xxl{
   display: none;
