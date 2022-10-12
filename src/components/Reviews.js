@@ -19,6 +19,7 @@ const Reviews = () =>{
     const [textInpTouched2, setTextInpTouched2] = useState(false)
 
     const [review, setReview] = useState("")
+    const [review2, setReview2] = useState("")
     const [reviews, setReviews] = useState([])
 
     const textHandler = (e)=>{
@@ -87,7 +88,7 @@ const Reviews = () =>{
         .catch((err) => {
         console.log(err)
         });
-    }, [review])
+    }, [review, review2])
     const removeComment = (cid) =>{
         axios.post('https://movies-catalog-app.herokuapp.com/user/review/del/full', {
             rwid: cid
@@ -123,7 +124,7 @@ const Reviews = () =>{
             console.log("response after editing")
             console.log(res)
             if(!o.error){
-                setReview(o)
+                setReview2(o)
             }
             })
             .catch((err) => {
