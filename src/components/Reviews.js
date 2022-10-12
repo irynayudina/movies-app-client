@@ -151,7 +151,7 @@ const Reviews = () =>{
         <div className='comment' key={r?._id}>
             {r?.user == user?._id ? <div className='delete-comment' onClick={()=>removeComment(r?._id)}>delete</div>: ""}
             {r?.user == user?._id ? <div className='delete-comment' onClick={()=>showEdditCommentForm()}>edit</div>: ""}
-            {answerForm ? <form onSubmit={editReview(r?.text, r?.rating, r?._id)}>
+            {answerForm ? <form onSubmit={editReview}>
             <label htmlFor="text">Text</label>
             <textarea name="textEdit" className="form-control" id="textEdit" cols="30" rows="10" 
             onChange={textHandler2}
