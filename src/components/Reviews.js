@@ -178,7 +178,7 @@ const Reviews = () =>{
             {!answerForm ? <>
             <p className='err'>{r.rating}</p>
             <p>{r.text}</p></> : ""}
-            {r.isUpdated ? <small>Updated</small> : ""}
+            {r.isUpdated ? <small>Updated ({r.updatedAt?.slice(0,10)}, {new Date(r.updatedAt).getTime})</small> : ""}
             {r.isUpdated ? <p className='date-review'><small>{r.updatedAt?.slice(0,10)}</small></p> : 
             <p className='date-review'><small>{r.createdAt.slice(0,10)}</small></p>}
         </div>
