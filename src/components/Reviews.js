@@ -103,10 +103,12 @@ const Reviews = () =>{
         });
     }
     const [answerForm, setAFVisible] = useState(false)
-    const showEdditCommentForm = () => {
+    const showEdditCommentForm = (ct, crat) => {
         setAFVisible((prevState) => !prevState)
+        setRatingInp2(crat)
+        setTextInp2(ct)
     }
-    const editReview = (e, ct, crat, cid) => {
+    const editReview = (e, cid) => {
         e.preventDefault();
         if(textValid){
             axios.post('https://movies-catalog-app.herokuapp.com/user/review/update', {
@@ -150,8 +152,8 @@ const Reviews = () =>{
         {reviews.map((r) => (
         <div className='comment' key={r?._id}>
             {r?.user == user?._id ? <div className='delete-comment' onClick={()=>removeComment(r?._id)}>delete</div>: ""}
-            {r?.user == user?._id ? <div className='delete-comment' onClick={()=>showEdditCommentForm()}>edit</div>: ""}
-            {answerForm ? <form onSubmit={editReview}>
+            {r?.user == user?._id ? <div className='delete-comment' onClick={()=>showEdditCommentForm(r.text, r.rating)}>edit</div>: ""}
+            {answerForm ? <form onSubmit={(e)=>editReview(e, r.id)}>
             <label htmlFor="text">Text</label>
             <textarea name="textEdit" className="form-control" id="textEdit" cols="30" rows="10" 
             onChange={textHandler2}
