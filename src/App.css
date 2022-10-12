@@ -312,7 +312,7 @@ a:hover h1{
 .filer-films-xs, .filer-films-sm, .filer-films-md{
   margin: auto;
 }
-.toggle-filter-films-xs .filer-films, .toggle-filter-films-sm-md, .filer-films{
+.toggle-filter-films-xs .filer-films, .toggle-filter-films-md, .filer-films{
   margin: auto;
 }
 .toggle-filter-films, .toggle-filter-films-xs, .toggle-filter-films-sm, .toggle-filter-films-md{
@@ -551,19 +551,19 @@ footer h2 a:hover{
     z-index: 400;
   }
 }
-.logo-sm, .logo-xs{
+.logo-sm, .logo-xs, .logo-md{
   font-size: 10px !important;
   color: red;  
   max-width: 100;
 }
-.page-header-sm, .page-header-xs {
+.page-header-sm, .page-header-xs, .page-header-md {
   display: flex;
   flex-direction: column;
   align-items: center;
   height: auto;
   padding-bottom: 10px;
 }
-.page-header-sm .searchbar, .page-header-xs .searchbar{
+.page-header-sm .searchbar, .page-header-xs .searchbar, .page-header-md .searchbar{
   margin-bottom: 10px;
 }
 
