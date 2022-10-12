@@ -119,8 +119,10 @@ const Reviews = () =>{
             })
             .then((res) => {
             let o = res.data
+            console.log("response after editing")
+            console.log(res)
             if(!o.error){
-                setReview(o)
+                // setReview(o)
             }
             })
             .catch((err) => {
