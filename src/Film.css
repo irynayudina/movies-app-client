@@ -63,7 +63,10 @@
     max-width: 500px;max-width: 100%;
   }
   .description-xs p{
-    max-width: 100%;
+    max-width: 90%;
+  }
+  .description-xs h2{
+    max-width: 90%;
   }
   .reviews{ 
     border: 2px solid #ddd;

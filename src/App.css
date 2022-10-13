@@ -143,6 +143,7 @@ a:hover h1{
   margin-top: 8px;
   font-size: 17px;
   border: none;
+  width: 200px;
 }
 .searchbar button {
   float: right;
