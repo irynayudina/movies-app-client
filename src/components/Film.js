@@ -2,6 +2,7 @@ import Header from '../elements/Header'
 import Footer from '../elements/Footer'
 import Reviews from '../components/Reviews'
 import AddToPlaylist from '../elements/AddToPlaylist';
+import newContext from '../contexts/newContext';
 import "../Film.css";
 import { useEffect, useState } from 'react'
 import axios from 'axios';
@@ -217,7 +218,7 @@ const [name2Inp, setName2Inp] = useState("")
     }
   }
   return  (
-  <>
+  <newContext.Provider value={"new value"}>
   <div className={`modal-bg ${playlistHidden ? 'hidden' : ''}`} >
     <div className={`modal ${playlistHidden ? 'hidden' : ''}`} >
       <div className='close' onClick={hideModalPlaylistAdd}>&#10006;</div>
@@ -266,7 +267,7 @@ const [name2Inp, setName2Inp] = useState("")
   </div>
   <div className='reviews'><Reviews /></div>
   <Footer />
-  </>
+  </ newContext.Provider>
   )
 }
 export default Film;

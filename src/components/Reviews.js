@@ -1,10 +1,13 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import newContext from '../contexts/newContext';
+import { useContext, useEffect, useState } from 'react';
 const Reviews = () =>{
+    const messageFromContextProvidedbyParentFilm = useContext(newContext)
     const [user, setUser] = useState("")
     useEffect(()=>{
         setUser(JSON.parse(localStorage.getItem('user')))
         console.log(localStorage.getItem('user'))
+        console.log(messageFromContextProvidedbyParentFilm)
     }, [])
 
     const [textValid, setTextValid] = useState(false)
