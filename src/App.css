@@ -78,7 +78,7 @@ h1 {
 .card-playlist{
   text-align: center;
   padding: 10px;
-  max-width: 280px;
+  width: 280px;
   border-radius: 5px;
   padding: 1em;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -544,6 +544,8 @@ footer h2 a:hover{
   color: deeppink;
   cursor: pointer;
   position:relative;
+  top:0;
+  right:0;
   z-index: 400;
 }
 .hover-hide {
@@ -552,6 +554,11 @@ footer h2 a:hover{
 /* smartphones, touchscreens */
 @media (hover: none) and (pointer: coarse) {
   .delete-playlist{
+    color: deeppink;
+    cursor: pointer;
+    position:relative;
+    top:0;
+    right:0;
     z-index: 400;
   }
 }
@@ -577,6 +584,8 @@ footer h2 a:hover{
     color: deeppink;
     cursor: pointer;
     position:relative;
+    top:0;
+    right:0;
     display: none;
     z-index: 400;
   }
