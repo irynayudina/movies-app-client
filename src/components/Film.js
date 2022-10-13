@@ -110,7 +110,7 @@ useEffect(()=>{
     console.log(localStorage.getItem('user'))    
 }, [])
 useEffect(()=>{
-  setIsLoading(true)
+  // setIsLoading(true)
   if(user){
     axios
       .get('https://movies-catalog-app.herokuapp.com/user/playlist', {
@@ -121,11 +121,11 @@ useEffect(()=>{
       .then((res) => {
         let o = res.data
         setPlaylist(o);
-        setIsLoading(false)
+        // setIsLoading(false)
       })
       .catch((err) => {
         console.log(err);
-        setIsLoading(false)
+        // setIsLoading(false)
       });
   }    
 }, [user])
