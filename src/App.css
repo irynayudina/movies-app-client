@@ -585,7 +585,7 @@ footer h2 a:hover{
     cursor: pointer;
     position:relative;
     top:0;
-    right:0;
+    right:10px;
     display: none;
     z-index: 400;
   }
