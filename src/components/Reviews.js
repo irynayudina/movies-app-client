@@ -7,7 +7,7 @@ const Reviews = () =>{
     useEffect(()=>{
         setUser(JSON.parse(localStorage.getItem('user')))
         console.log(localStorage.getItem('user'))
-        console.log(messageFromContextProvidedbyParentFilm)
+        console.log("messageFromContextProvidedbyParentFilm logged in child reviews" + messageFromContextProvidedbyParentFilm)
     }, [])
 
     const [textValid, setTextValid] = useState(false)

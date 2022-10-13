@@ -217,8 +217,9 @@ const [name2Inp, setName2Inp] = useState("")
       });
     }
   }
+  const stringForContext = "new value";
   return  (
-  <newContext.Provider value={"new value"}>
+  <newContext.Provider value={stringForContext}>
   <div className={`modal-bg ${playlistHidden ? 'hidden' : ''}`} >
     <div className={`modal ${playlistHidden ? 'hidden' : ''}`} >
       <div className='close' onClick={hideModalPlaylistAdd}>&#10006;</div>
