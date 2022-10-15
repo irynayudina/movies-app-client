@@ -39,6 +39,12 @@ const Review = (props) =>{
         setratingInpEdited(crat)
         settextInpEdited(ct)
     }
+    useEffect(()=>{
+        var offset = new Date().getTimezoneOffset();
+        let upd = new Date(r.updatedAt)
+        var offsetTime = new Date(upd.getTime() - offset * 30 * 1000);
+        r.updatedAt = offsetTime.toISOString()
+    },[])
     const editReview = (e, cid) => {
         e.preventDefault();
         if(textValidEdited){
