@@ -44,7 +44,7 @@ const Review = (props) =>{
         let upd = new Date(r.updatedAt)
         var offsetTime = new Date(upd.getTime() + offset / (-60) * 60 * 60 * 1000);
         r.updatedAt = offsetTime.toISOString()
-    },[])
+    },[reviewEdited])
     const editReview = (e, cid) => {
         e.preventDefault();
         if(textValidEdited){
