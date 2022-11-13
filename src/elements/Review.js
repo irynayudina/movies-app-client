@@ -60,10 +60,10 @@ const Review = (props) =>{
             console.log("response after editing")
             console.log(res)
             if(!o.error){
-                var offset = new Date().getTimezoneOffset();
-                let upd = new Date(r.updatedAt)
-                var offsetTime = new Date(upd.getTime() + offset / (-60) * 60 * 60 * 1000);
-                o.updatedAt = offsetTime.toISOString()
+                // var offset = new Date().getTimezoneOffset();
+                // let upd = new Date(r.updatedAt)
+                // var offsetTime = new Date(upd.getTime() + offset / (-60) * 60 * 60 * 1000);
+                // o.updatedAt = offsetTime.toISOString()
                 setReviewEdited(o)                
             }
             })
