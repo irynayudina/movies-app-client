@@ -78,6 +78,12 @@ const Reviews = () =>{
         console.log(err)
         });
     }, [review])
+    const updateTimeToTimezone = (r)=>{
+        var offset = new Date().getTimezoneOffset();
+        let upd = new Date(r.updatedAt)
+        var offsetTime = new Date(upd.getTime() + offset / (-60) * 60 * 60 * 1000);
+        r.updatedAt = offsetTime.toISOString()
+    }
     return  (
         <>
         <div className="add-review"> 
@@ -102,6 +108,9 @@ const Reviews = () =>{
         </div>  
         {reviews.map((r) => (
             <React.Fragment  key={r._id}>
+                {
+                    updateTimeToTimezone(r)
+                }
                 <Review rev={r} user={user}/>
             </React.Fragment>))} 
         </>
