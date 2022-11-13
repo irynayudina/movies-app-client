@@ -39,12 +39,12 @@ const Review = (props) =>{
         setratingInpEdited(crat)
         settextInpEdited(ct)
     }
-    // useEffect(()=>{
-    //     var offset = new Date().getTimezoneOffset();
-    //     let upd = new Date(r.updatedAt)
-    //     var offsetTime = new Date(upd.getTime() + offset / (-60) * 60 * 60 * 1000);
-    //     r.updatedAt = offsetTime.toISOString()
-    // },[])
+    useEffect(()=>{
+        var offset = new Date().getTimezoneOffset();
+        let upd = new Date(r.updatedAt)
+        var offsetTime = new Date(upd.getTime() + offset / (-60) * 60 * 60 * 1000);
+        r.updatedAt = offsetTime.toISOString()
+    },[])
     const editReview = (e, cid) => {
         e.preventDefault();
         if(textValidEdited){
@@ -60,11 +60,11 @@ const Review = (props) =>{
             console.log("response after editing")
             console.log(res)
             if(!o.error){
-                setReviewEdited(o)
                 var offset = new Date().getTimezoneOffset();
                 let upd = new Date(r.updatedAt)
                 var offsetTime = new Date(upd.getTime() + offset / (-60) * 60 * 60 * 1000);
-                reviewEdited.updatedAt = offsetTime.toISOString()
+                o.updatedAt = offsetTime.toISOString()
+                setReviewEdited(o)                
             }
             })
             .catch((err) => {
