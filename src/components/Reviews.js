@@ -108,9 +108,6 @@ const Reviews = () =>{
         </div>  
         {reviews.map((r) => (
             <React.Fragment  key={r._id}>
-                {
-                    updateTimeToTimezone(r)
-                }
                 <Review rev={r} user={user}/>
             </React.Fragment>))} 
         </>
