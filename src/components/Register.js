@@ -50,12 +50,31 @@ const Register = () =>{
     }
 
     const [usernameTaken, setUsernameTaken] = useState("")
+    // lab 2
+    const [passwordError, setPasswordError] = useState("Passwords don`t match")
 
     const registerUser = (e)=>{
         e.preventDefault()
         setUsernameValid((usernameInp.trim() !== '') || !usernameInpTouched);
+        let errorPasword = false;
+        let sameCharsGroup = "";
+        let sameCharsGroupCount = 0;
+        let passwordTest = pwInp;
+        for (let i = 0; i < passwordTest.length; i++){
+            let char = passwordTest[i];
+            sameCharsGroup = (pwInp.match(new RegExp(char)) || []).length;
+            if(sameCharsGroup == 1 ){
+                ++sameCharsGroupCount;
+            }
+            if(sameCharsGroupCount > 1){
+                errorPasword = true;
+                setPasswordError("Should have not more than 1 group of repeating characters")
+            } else {
+                setPasswordError("Passwords don`t match")
+            }
+        }
         setEmailValid((/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(emailInp.trim())) || !emailInpTouched);
-        setPasswordValid((pwInp == pw2Inp) || !pwInpTouched || !pw2InpTouched);
+        setPasswordValid(!errorPasword && (pwInp == pw2Inp) || !pwInpTouched || !pw2InpTouched);
         if(usernameValid && emailValid && passwordValid){
             axios.post('https://movies-catalog-app.herokuapp.com/user/new', {
                 'user-email': emailInp.trim(),
@@ -103,7 +122,7 @@ const Register = () =>{
                 onChange={pHandler}
                 onBlur={pwBlurHandler}
                 value={pwInp} />              
-                {pwInpTouched && pw2InpTouched && !passwordValid && <div className='err'><small>Passwords don`t match</small></div>}
+                {pwInpTouched && pw2InpTouched && !passwordValid && <div className='err'><small>{passwordError}</small></div>}
             
                 <label htmlFor="user-password2">Repeat Password</label>
                 <input type="password" id="user-password2" name="user-password2" placeholder="" autoComplete="on" 
