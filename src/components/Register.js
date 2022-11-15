@@ -53,7 +53,7 @@ const Register = () =>{
         // Допустима довжина групи 2 букви. Обмеження на кількість таких груп – 1. 
         for (let i = 0; i < passwordTest.length; i++){
             let char = passwordTest[i];
-            sameCharsGroup = (pwInp.match(new RegExp(char)) || []).length;
+            sameCharsGroups = (pwInp.match(new RegExp(char)) || []).length;
             if(sameCharsGroups == 1 ){
                 ++sameCharsGroupCount;
             }
