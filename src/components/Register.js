@@ -8,8 +8,10 @@ const Register = () =>{
     const [usernameValid, setUsernameValid] = useState(false)
     const [emailValid, setEmailValid] = useState(false)
     const [passwordValid, setPasswordValid] = useState(false)
+    const [passwordSame, setPasswordSame] = useState(true)
 
     const [usernameInp, setUsernameInp] = useState("")
+    const [usernameTaken, setUsernameTaken] = useState("")
     const [emailInp, setEmailInp] = useState("")
     const [pwInp, setPwInp] = useState("")
     const [pw2Inp, setPw2Inpp] = useState("")
@@ -18,9 +20,6 @@ const Register = () =>{
     const [emailInpTouched, setEmailInpTouched] = useState(false)
     const [pwInpTouched, setPwInpTouched] = useState(false)
     const [pw2InpTouched, setPw2InppTouched] = useState(false)
-
-    
-    const [passwordError, setPasswordError] = useState("Passwords don`t match")
 
     const uHandler = (e)=>{
         setUsernameInp(e.target.value)
@@ -43,29 +42,6 @@ const Register = () =>{
         setEmailInpTouched(true);
         setEmailValid((/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(emailInp.trim())) || !emailInpTouched);
     }
-    const checkPasword = ()=>{
-        let errorPasword = false;
-        let sameCharsGroups = 0;
-        let sameCharsGroupCount = 0;
-        let passwordTest = pwInp;
-        // Відбраковування паролів, які містять групи однакових букв. 
-        // Примусова зміна паролю під час першого входу в систему. 
-        // Допустима довжина групи 2 букви. Обмеження на кількість таких груп – 1. 
-        for (let i = 0; i < passwordTest.length; i++){
-            let char = passwordTest[i];
-            sameCharsGroups = (pwInp.match(new RegExp(char)) || []).length;
-            if(sameCharsGroups == 1 ){
-                ++sameCharsGroupCount;
-            }
-            if(sameCharsGroupCount > 1){
-                errorPasword = true;
-                setPasswordError("Should have not more than 1 group of repeating characters")
-            } else {
-                setPasswordError("Passwords don`t match")
-            }
-        }
-        setPasswordValid(!errorPasword && (pwInp == pw2Inp) || !pwInpTouched || !pw2InpTouched);
-    }
     const pwBlurHandler = (e) => {
         setPwInpTouched(true);
         checkPasword();
@@ -75,14 +51,12 @@ const Register = () =>{
         checkPasword();
     }
 
-    const [usernameTaken, setUsernameTaken] = useState("")
-
     const registerUser = (e)=>{
         e.preventDefault()
         setUsernameValid((usernameInp.trim() !== '') || !usernameInpTouched);        
         setEmailValid((/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(emailInp.trim())) || !emailInpTouched);
         setPasswordValid((pwInp == pw2Inp) || !pwInpTouched || !pw2InpTouched);
-        if(usernameValid && emailValid && passwordValid){
+        if(usernameValid && emailValid && passwordValid && passwordSame){
             axios.post('https://movies-catalog-app.herokuapp.com/user/new', {
                 'user-email': emailInp.trim(),
                 'user-password': pwInp,
@@ -100,6 +74,37 @@ const Register = () =>{
                 console.log(error);
             });
         }
+    }
+    const [passwordError, setPasswordError] = useState("");
+    const checkPasword = ()=>{
+        let sameCharsGroups = 0;
+        let passwordTest = pwInp;
+        // Відбраковування паролів, які містять групи однакових букв. 
+        // Примусова зміна паролю під час першого входу в систему. 
+        // Допустима довжина групи 2 букви. Обмеження на кількість таких груп – 1.         
+        for (let i = 0; i < passwordTest.length-1; i++){
+            if(passwordTest[i] == passwordTest[i+1]){
+                ++sameCharsGroups;
+            }
+            if(sameCharsGroups > 1){
+                setPasswordError("Should have not more than 1 group of 2 repeating characters")
+                setPasswordValid(false);
+            } else {
+                setPasswordValid(true)
+                setPasswordError("")
+            }
+        }
+        console.log(passwordTest.length);
+        console.log("same count "+sameCharsGroups);
+    }
+    const showPw = (e)=>{
+        let x = e.target;
+        if (x.type === "password") {
+            x.type = "text";
+          } else {
+            x.type = "password";
+          }
+        
     }
     return (
     <>
@@ -128,15 +133,18 @@ const Register = () =>{
                 <input type="password" id="user-password" name="user-password"  placeholder="" autoComplete="on"
                 onChange={pHandler}
                 onBlur={pwBlurHandler}
-                value={pwInp} />              
-                {pwInpTouched && pw2InpTouched && !passwordValid && <div className='err'><small>{passwordError}</small></div>}
-            
+                onClick={showPw}
+                value={pwInp} />   
+                {!passwordValid && pwInpTouched && <div className='err'><small>{passwordError}</small></div>}
+
                 <label htmlFor="user-password2">Repeat Password</label>
                 <input type="password" id="user-password2" name="user-password2" placeholder="" autoComplete="on" 
                 onChange={p2Handler}
                 onBlur={pw2BlurHandler}
+                onClick={showPw}
                 value={pw2Inp} />
-                    
+                {!passwordSame && <div className='err'><small>Passwords don't match</small></div>}
+
                 <button type="submit">Submit</button>
             </form>
         <a href="https://movies-app-playlists.netlify.app/user/login">Log in</a>
