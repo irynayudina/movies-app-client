@@ -45,13 +45,16 @@ const Register = () =>{
     }
     const checkPasword = ()=>{
         let errorPasword = false;
-        let sameCharsGroup = "";
+        let sameCharsGroups = 0;
         let sameCharsGroupCount = 0;
         let passwordTest = pwInp;
+        // Відбраковування паролів, які містять групи однакових букв. 
+        // Примусова зміна паролю під час першого входу в систему. 
+        // Допустима довжина групи 2 букви. Обмеження на кількість таких груп – 1. 
         for (let i = 0; i < passwordTest.length; i++){
             let char = passwordTest[i];
             sameCharsGroup = (pwInp.match(new RegExp(char)) || []).length;
-            if(sameCharsGroup == 1 ){
+            if(sameCharsGroups == 1 ){
                 ++sameCharsGroupCount;
             }
             if(sameCharsGroupCount > 1){
@@ -61,15 +64,14 @@ const Register = () =>{
                 setPasswordError("Passwords don`t match")
             }
         }
+        setPasswordValid(!errorPasword && (pwInp == pw2Inp) || !pwInpTouched || !pw2InpTouched);
     }
     const pwBlurHandler = (e) => {
         setPwInpTouched(true);
-        setPasswordValid((pwInp == pw2Inp) || !pwInpTouched || !pw2InpTouched);
         checkPasword();
     }
     const pw2BlurHandler = (e) => {
         setPw2InppTouched(true);
-        setPasswordValid((pwInp == pw2Inp) || !pwInpTouched || !pw2InpTouched);
         checkPasword();
     }
 
@@ -77,8 +79,7 @@ const Register = () =>{
 
     const registerUser = (e)=>{
         e.preventDefault()
-        setUsernameValid((usernameInp.trim() !== '') || !usernameInpTouched);
-        
+        setUsernameValid((usernameInp.trim() !== '') || !usernameInpTouched);        
         setEmailValid((/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(emailInp.trim())) || !emailInpTouched);
         setPasswordValid((pwInp == pw2Inp) || !pwInpTouched || !pw2InpTouched);
         if(usernameValid && emailValid && passwordValid){
