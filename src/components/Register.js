@@ -19,6 +19,9 @@ const Register = () =>{
     const [pwInpTouched, setPwInpTouched] = useState(false)
     const [pw2InpTouched, setPw2InppTouched] = useState(false)
 
+    
+    const [passwordError, setPasswordError] = useState("Passwords don`t match")
+
     const uHandler = (e)=>{
         setUsernameInp(e.target.value)
     }
@@ -40,22 +43,7 @@ const Register = () =>{
         setEmailInpTouched(true);
         setEmailValid((/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(emailInp.trim())) || !emailInpTouched);
     }
-    const pwBlurHandler = (e) => {
-        setPwInpTouched(true);
-        setPasswordValid((pwInp == pw2Inp) || !pwInpTouched || !pw2InpTouched);
-    }
-    const pw2BlurHandler = (e) => {
-        setPw2InppTouched(true);
-        setPasswordValid((pwInp == pw2Inp) || !pwInpTouched || !pw2InpTouched);
-    }
-
-    const [usernameTaken, setUsernameTaken] = useState("")
-    // lab 2
-    const [passwordError, setPasswordError] = useState("Passwords don`t match")
-
-    const registerUser = (e)=>{
-        e.preventDefault()
-        setUsernameValid((usernameInp.trim() !== '') || !usernameInpTouched);
+    const checkPasword = ()=>{
         let errorPasword = false;
         let sameCharsGroup = "";
         let sameCharsGroupCount = 0;
@@ -73,8 +61,26 @@ const Register = () =>{
                 setPasswordError("Passwords don`t match")
             }
         }
+    }
+    const pwBlurHandler = (e) => {
+        setPwInpTouched(true);
+        setPasswordValid((pwInp == pw2Inp) || !pwInpTouched || !pw2InpTouched);
+        checkPasword();
+    }
+    const pw2BlurHandler = (e) => {
+        setPw2InppTouched(true);
+        setPasswordValid((pwInp == pw2Inp) || !pwInpTouched || !pw2InpTouched);
+        checkPasword();
+    }
+
+    const [usernameTaken, setUsernameTaken] = useState("")
+
+    const registerUser = (e)=>{
+        e.preventDefault()
+        setUsernameValid((usernameInp.trim() !== '') || !usernameInpTouched);
+        
         setEmailValid((/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(emailInp.trim())) || !emailInpTouched);
-        setPasswordValid(!errorPasword && (pwInp == pw2Inp) || !pwInpTouched || !pw2InpTouched);
+        setPasswordValid((pwInp == pw2Inp) || !pwInpTouched || !pw2InpTouched);
         if(usernameValid && emailValid && passwordValid){
             axios.post('https://movies-catalog-app.herokuapp.com/user/new', {
                 'user-email': emailInp.trim(),
