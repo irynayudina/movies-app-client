@@ -41,21 +41,21 @@ const Register = () =>{
     const eBlurHandler = (e) => {
         setEmailInpTouched(true);
         setEmailValid((/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(emailInp.trim())) || !emailInpTouched);
-    }
+    }   
     const pwBlurHandler = (e) => {
         setPwInpTouched(true);
         checkPasword();
+        setPasswordSame((pwInp == pw2Inp) )//|| !pwInpTouched || !pw2InpTouched);
     }
     const pw2BlurHandler = (e) => {
         setPw2InppTouched(true);
-        checkPasword();
+        setPasswordSame((pwInp == pw2Inp)) //|| !pwInpTouched || !pw2InpTouched);
     }
 
     const registerUser = (e)=>{
         e.preventDefault()
         setUsernameValid((usernameInp.trim() !== '') || !usernameInpTouched);        
         setEmailValid((/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(emailInp.trim())) || !emailInpTouched);
-        setPasswordValid((pwInp == pw2Inp) || !pwInpTouched || !pw2InpTouched);
         if(usernameValid && emailValid && passwordValid && passwordSame){
             axios.post('https://movies-catalog-app.herokuapp.com/user/new', {
                 'user-email': emailInp.trim(),
