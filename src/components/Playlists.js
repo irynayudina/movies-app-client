@@ -2,6 +2,7 @@ import Header from '../elements/Header'
 import axios from 'axios';
 import Footer from '../elements/Footer'
 import Playlist from '../components/Playlist';
+import logoutFunc from '../utility/logoutFunc';
 import { useEffect, useState } from 'react';
 const Playlists = () =>{
   const [isLoading, setIsLoading] = useState(false);
@@ -12,62 +13,79 @@ const Playlists = () =>{
 
   useEffect(()=>{
       setUser(JSON.parse(localStorage.getItem('user')))
-      console.log(localStorage.getItem('user'))
   }, [])
   useEffect(()=>{
     setIsLoading(true)
     if(user){
-      console.log(user._id)
-      axios
-        .get('https://movies-catalog-app.herokuapp.com/user/playlist', {
+      axios.get('https://movies-catalog-app.herokuapp.com/user/playlist', {
+          headers: {
+            authorization: "Bearer " + user.accessToken
+          },
           params: {
               "uid": user._id
           }
       })
         .then((res) => {
           let o = res.data
-          console.log(o)
           setPlaylists(o);
           setIsLoading(false)
         })
         .catch((err) => {
           console.log(err);
           setIsLoading(false)
+          if (err.response.status == 403) {
+            logoutFunc()
+        }
         });
     }    
   }, [user, rem, publ])
   const removePlaylist = (i) => {
-    console.log('removed'+i)
     axios.post('https://movies-catalog-app.herokuapp.com/user/playlist/del', {
       "pid":  i
+    }, {            
+      headers: {
+        authorization: "Bearer " + user.accessToken
+      } 
     })
     .then((res) => {
     let o = res
     setRem(o)
-    console.log(o)
     })
     .catch((err) => {
-    console.log(err)
+      console.log(err)
+      if (err.response.status == 403) {
+        logoutFunc()
+    }
     });
   }
   const makePublic = (i) => {
-    console.log('published'+i)
     axios.post('https://movies-catalog-app.herokuapp.com/user/playlist/public', {
       "pid":  i
+    }, {            
+      headers: {
+        authorization: "Bearer " + user.accessToken
+      } 
     })
     .then((res) => {
     let o = res
     setPubl(o)
-    console.log(o)
     })
     .catch((err) => {
-    console.log(err)
+      console.log(err)
+      if (err.response.status == 403) {
+        logoutFunc()
+    }
     });
   }
     return  (
       <>
-      <Header />
-      <h2 style={{"padding-left":"10px"}}>Watchlists:</h2>
+      <Header /><h2 style={{"paddingLeft":"10px"}}>User info:</h2>
+      <div style={{"paddingLeft":"10px"}}>
+      <p className='err'>{user?.name}</p>
+      <p className='err'>{user?.email}</p>
+      <p><small>Created: </small></p><p className='err'>{user?.createdAt?.slice(0,10)}</p>
+      </div>  
+      <h2 style={{"paddingLeft":"10px"}}>Watchlists:</h2>
       <div className="page-body-films">
         <div className="display-pl">
         {isLoading && <h2 className='loading'>Loading...</h2>}
@@ -83,7 +101,7 @@ const Playlists = () =>{
               <h2>{pl?.name}</h2>
               <div className='hr'></div>
               
-              <Playlist it={pl}/>
+              <Playlist it={pl} user={ user} />
             </div>
           ))}</>}
         </div>

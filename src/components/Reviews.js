@@ -3,6 +3,7 @@ import newContext from '../contexts/newContext';
 import React from 'react';
 import { useContext, useEffect, useState } from 'react';
 import Review from '../elements/Review';
+import logoutFunc from '../utility/logoutFunc';
 const Reviews = () =>{
     const messageFromContextProvidedbyParentFilm = useContext(newContext)
     const [user, setUser] = useState("")
@@ -46,6 +47,10 @@ const Reviews = () =>{
                     username: user.name,
                     text: textInp, 
                     rating: ratingInp,
+                }, {            
+                    headers: {
+                        authorization: "Bearer " + user.accessToken
+                    } 
                 })
                 .then((res) => {
                 let o = res.data
@@ -56,7 +61,10 @@ const Reviews = () =>{
                 }
                 })
                 .catch((err) => {
-                console.log(err)
+                    console.log(err)
+                    if (err.response.status == 403) {
+                        logoutFunc()
+                    }
                 });
             }
         }        

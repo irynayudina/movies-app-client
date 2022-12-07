@@ -30,7 +30,7 @@ const PlaylistsPublic = () =>{
     if(user){
       console.log(user._id)
       axios
-        .get('https://movies-catalog-app.herokuapp.com/user/playlist', {
+        .get('https://movies-catalog-app.herokuapp.com/user/playlistPublic', {
           params: {
               "uid": user._id
           }

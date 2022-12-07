@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import logoutFunc from '../utility/logoutFunc';
 const Playlist = (props) =>{
   const [plItems, setPlItems] = useState([])
   const [propsItems, setPropsItems] = useState(props.it.items)
@@ -9,7 +10,11 @@ const Playlist = (props) =>{
     axios.post('https://movies-catalog-app.herokuapp.com/user/playlist/watched/film', {
       "wid":  i,
       "pid": props.it._id
-    })
+    }, {            
+      headers: {
+          authorization: "Bearer " + props.user.accessToken
+      } 
+  })
     .then((res) => {
     let o = res
     console.log(o)
@@ -18,7 +23,10 @@ const Playlist = (props) =>{
     }
     })
     .catch((err) => {
-    console.log(err)
+      console.log(err)
+      if (err.response.status == 403) {
+      logoutFunc()
+  }
     });
   }
   const removeFromPlaylist = (i) => {
@@ -27,7 +35,12 @@ const Playlist = (props) =>{
     axios.post('https://movies-catalog-app.herokuapp.com/user/playlist/delf', {
       "pid":  props.it._id,
       "did": i
-    })
+    },
+      {
+        headers: {
+          authorization: "Bearer " + props.user.accessToken
+        }
+      })
     .then((res) => {
     let o = res
     console.log(o)
@@ -36,7 +49,10 @@ const Playlist = (props) =>{
     }
     })
     .catch((err) => {
-    console.log(err)
+      console.log(err)
+      if (err.response.status == 403) {
+        logoutFunc()
+    }
     });
   }
   useEffect(()=>{

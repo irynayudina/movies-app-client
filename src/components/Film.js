@@ -6,6 +6,7 @@ import newContext from '../contexts/newContext';
 import "../Film.css";
 import { useEffect, useState } from 'react'
 import axios from 'axios';
+import logoutFunc from '../utility/logoutFunc';
 const Film = (props) =>{
   const [screenSize, setScreenSize] = useState(window.innerWidth) 
   const [isLoading, setIsLoading] = useState(false);
@@ -115,6 +116,9 @@ useEffect(()=>{
   if(user){
     axios
       .get('https://movies-catalog-app.herokuapp.com/user/playlist', {
+        headers: {
+          authorization: "Bearer " + user.accessToken
+        },
         params: {
             "uid": user._id
         }
@@ -126,7 +130,9 @@ useEffect(()=>{
       })
       .catch((err) => {
         console.log(err);
-        // setIsLoading(false)
+        if (err.response.status == 403) {
+          logoutFunc()
+      }
       });
   }    
 }, [user])
@@ -180,7 +186,11 @@ const [name2Inp, setName2Inp] = useState("")
             uid: user._id,
             fid:urlfid, 
             fname: film.name
-        })
+        }, {            
+          headers: {
+              authorization: "Bearer " + user.accessToken
+          } 
+      })
         .then((res) => {
         let o = res.data
         if(!o.error){
@@ -205,7 +215,11 @@ const [name2Inp, setName2Inp] = useState("")
           plid: name2Inp,
           fid: urlfid, 
           fname: film.name
-        })
+        }, {            
+          headers: {
+              authorization: "Bearer " + user.accessToken
+          } 
+      })
         .then((res) => {
         let o = res.data
         if(!o.error){

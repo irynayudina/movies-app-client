@@ -5,7 +5,6 @@ import {faUser} from '@fortawesome/free-solid-svg-icons'
 const Header = (props) =>{
   const [screenSize, setScreenSize] = useState(window.innerWidth) 
   const submitHandler = (event) =>{
-    // console.log(event)
     // event.preventDefault()
     props.onSearchName(event)
   }
@@ -19,7 +18,6 @@ const Header = (props) =>{
   }
   useEffect(()=>{
     setUser(JSON.parse(localStorage.getItem('user')))
-    console.log(localStorage.getItem('user'))
   }, [])
   //clicked-userlinks
   const [isClicked, setIsClicked] = useState(false)
@@ -27,17 +25,14 @@ const Header = (props) =>{
     setIsClicked(!isClicked)
   }
   useEffect(()=>{
-    console.log("clicked "+isClicked)
-  }, [isClicked])
-  useEffect(()=>{
     if(user){
       setLink(
       <div className="login login-logged" onClick={clickDropdown} onMouseEnter={() => setIsClicked(true)} onMouseLeave={() => setIsClicked(false)}>
          <p><FontAwesomeIcon icon={faUser} /> {user.name}</p>
         {isClicked && 
           <div className="dropdown-clicked">     
-            <div className="hiddenusermenue-clicked"><a href={`https://movies-app-playlists.netlify.app/user/${user._id}/playlists`}>My watchlists</a></div>
-            <div className="hiddenusermenue-clicked"><a href={`https://movies-app-playlists.netlify.app/user/${user._id}/passwordreset`}>Change password</a></div>
+            <div className="hiddenusermenue-clicked"><a href={`https://movies-app-playlists.netlify.app/user/playlists`}>My watchlists</a></div>
+            <div className="hiddenusermenue-clicked"><a href={`https://movies-app-playlists.netlify.app/user/passwordreset`}>Change password</a></div>
             <div className="hiddenusermenue-clicked"><a href="" onClick={exit}>Exit</a></div>
           </div>
         }
@@ -63,7 +58,6 @@ const Header = (props) =>{
         setScreenSize("xxl")
       }
     function handleResize() {
-      console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
       let s = window.innerWidth
       if(s<580){
         setScreenSize("xs")
@@ -78,7 +72,6 @@ const Header = (props) =>{
       } if(s >= 1400){
         setScreenSize("xxl")
       }
-      console.log(screenSize)
     }
     window.addEventListener('resize', handleResize);
     return () => {window.removeEventListener('resize', handleResize)}

@@ -1,25 +1,23 @@
 import Header from '../elements/Header'
 import axios from 'axios';
 import Footer from '../elements/Footer'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 const Register = () =>{
-    
     const [usernameValid, setUsernameValid] = useState(false)
     const [emailValid, setEmailValid] = useState(false)
     const [passwordValid, setPasswordValid] = useState(false)
-    const [passwordSame, setPasswordSame] = useState(true)
+    const [usernameTaken, setUsernameTaken] = useState("")
 
     const [usernameInp, setUsernameInp] = useState("")
-    const [usernameTaken, setUsernameTaken] = useState("")
     const [emailInp, setEmailInp] = useState("")
     const [pwInp, setPwInp] = useState("")
-    const [pw2Inp, setPw2Inpp] = useState("")
     
     const [usernameInpTouched, setUsernameInpTouched] = useState(false)
     const [emailInpTouched, setEmailInpTouched] = useState(false)
     const [pwInpTouched, setPwInpTouched] = useState(false)
-    const [pw2InpTouched, setPw2InppTouched] = useState(false)
 
     const uHandler = (e)=>{
         setUsernameInp(e.target.value)
@@ -30,10 +28,7 @@ const Register = () =>{
     const pHandler = (e)=>{
         setPwInp(e.target.value)
     }
-    const p2Handler = (e)=>{
-        setPw2Inpp(e.target.value)
-    }
-    
+
     const uBlurHandler = (e) => {
         setUsernameInpTouched(true);
         setUsernameValid((usernameInp.trim() !== '') || !usernameInpTouched);
@@ -41,33 +36,42 @@ const Register = () =>{
     const eBlurHandler = (e) => {
         setEmailInpTouched(true);
         setEmailValid((/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(emailInp.trim())) || !emailInpTouched);
-    }   
+    }    
     const pwBlurHandler = (e) => {
         setPwInpTouched(true);
         checkPasword();
-        setPasswordSame((pwInp == pw2Inp) )//|| !pwInpTouched || !pw2InpTouched);
     }
-    const pw2BlurHandler = (e) => {
-        setPw2InppTouched(true);
-        setPasswordSame((pwInp == pw2Inp)) //|| !pwInpTouched || !pw2InpTouched);
+
+    const randPass = ()=>{
+        let spchars = '!@#$%^&*()~'
+        let randpass = Math.random().toString(36).slice(2) + 
+                Math.random().toString(36)
+                    .toUpperCase().slice(2);
+        for(let j = 0; j < 3; j++){
+            let sci = Math.random()*spchars.length
+            let i = 1 + Math.random()*(randpass.length - 1)
+            randpass = randpass.slice(0, i) + spchars.at(sci) + randpass.slice(i);
+        }
+        setPwInp(randpass)
     }
 
     const registerUser = (e)=>{
         e.preventDefault()
-        setUsernameValid((usernameInp.trim() !== '') || !usernameInpTouched);        
+        setUsernameValid((usernameInp.trim() !== '') || !usernameInpTouched);
         setEmailValid((/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(emailInp.trim())) || !emailInpTouched);
-        if(usernameValid && emailValid && passwordValid && passwordSame){
+        if(usernameValid && emailValid && passwordValid ){
             axios.post('https://movies-catalog-app.herokuapp.com/user/new', {
                 'user-email': emailInp.trim(),
                 'user-password': pwInp,
                 'user-name': usernameInp.trim(),
+                'userIsNew': true
             })
             .then(function (response) {
-                if(response.data == 'User is already created'){
-                    setUsernameTaken(response.data+". Try another email")
+                if(response.data.error == 'User is already created'){
+                    setUsernameTaken(response.data.error+". Try another email")
                 } else {
-                    localStorage.setItem('user', JSON.stringify(response.data))
-                    window.location.replace(`https://movies-app-playlists.netlify.app/user/${response.data._id}/playlists`);
+                    alert("Success! Try to log in in")
+                    setUsernameTaken("")
                 }
             })
             .catch(function (error) {
@@ -75,37 +79,36 @@ const Register = () =>{
             });
         }
     }
+    
     const [passwordError, setPasswordError] = useState("");
     const checkPasword = ()=>{
         let sameCharsGroups = 0;
         let passwordTest = pwInp;
-        // Відбраковування паролів, які містять групи однакових букв. 
-        // Примусова зміна паролю під час першого входу в систему. 
-        // Допустима довжина групи 2 букви. Обмеження на кількість таких груп – 1.         
-        for (let i = 0; i < passwordTest.length-1; i++){
-            if(passwordTest[i] == passwordTest[i+1]){
-                ++sameCharsGroups;
-            }
-            if(sameCharsGroups > 1){
-                setPasswordError("Should have not more than 1 group of 2 repeating characters")
-                setPasswordValid(false);
-            } else {
-                setPasswordValid(true)
-                setPasswordError("")
+        if( passwordTest.length < 8){
+            setPasswordError("Should be at east 8 characters long")
+            setPasswordValid(false);
+        } else if(passwordTest.match(/[!@#$%^&*()~]/) == null){
+            setPasswordError("Should have at least one special character !@#$%^&*()~")
+            setPasswordValid(false);
+        } else {     
+            for (let i = 0; i < passwordTest.length-1; i++){
+                if(passwordTest[i] == passwordTest[i+1]){
+                    ++sameCharsGroups;
+                }
+                if(sameCharsGroups > 1){
+                    setPasswordError("Should have not more than 1 group of 2 repeating characters")
+                    setPasswordValid(false);
+                } else {
+                    setPasswordValid(true)
+                }
             }
         }
-        console.log(passwordTest.length);
-        console.log("same count "+sameCharsGroups);
     }
-    const showPw = (e)=>{
-        let x = e.target;
-        if (x.type === "password") {
-            x.type = "text";
-          } else {
-            x.type = "password";
-          }
-        
-    }
+    const eye = <FontAwesomeIcon icon={faEye} />
+    const togglePasswordVisiblity = () => {
+        setPasswordShown(passwordShown ? false : true);
+    };
+    const [passwordShown, setPasswordShown] = useState(false);
     return (
     <>
     <Header />
@@ -130,21 +133,14 @@ const Register = () =>{
                 {emailInpTouched && !emailValid && <div className='err'><small>Incorrect format of email (user123@mail.com)</small></div>}
             
                 <label htmlFor="user-password">Password</label>
-                <input type="password" id="user-password" name="user-password"  placeholder="" autoComplete="on"
+                <input type={passwordShown?"text":"password"} id="user-password" name="user-password"  placeholder="" autoComplete="on"
+                onFocus={randPass}
                 onChange={pHandler}
                 onBlur={pwBlurHandler}
-                onClick={showPw}
                 value={pwInp} />   
+                <div className="clickable i" onClick={togglePasswordVisiblity}>{eye}</div>           
                 {!passwordValid && pwInpTouched && <div className='err'><small>{passwordError}</small></div>}
-
-                <label htmlFor="user-password2">Repeat Password</label>
-                <input type="password" id="user-password2" name="user-password2" placeholder="" autoComplete="on" 
-                onChange={p2Handler}
-                onBlur={pw2BlurHandler}
-                onClick={showPw}
-                value={pw2Inp} />
-                {!passwordSame && <div className='err'><small>Passwords don't match</small></div>}
-
+            
                 <button type="submit">Submit</button>
             </form>
         <a href="https://movies-app-playlists.netlify.app/user/login">Log in</a>
