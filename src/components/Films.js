@@ -5,12 +5,12 @@ import Footer from '../elements/Footer'
 import Select from '../elements/Select';
 
 const Films = () => {
-  // const config = {
-  //   headers: {
-  //     "Access-Control-Allow-Origin": "https://movies-app-playlists.netlify.app",
-  //     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
-  //   }
-  // };
+  const config = {
+    headers: {
+      "Access-Control-Allow-Origin": "https://movies-app-playlists.netlify.app",
+      "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+    }
+  };
   const [screenSize, setScreenSize] = useState(window.innerWidth) 
   useEffect(()=>{
     let s = window.innerWidth
@@ -69,7 +69,7 @@ const fetchFilms = () => {
   setIsLoading(true)
     if(q == ""){
       axios
-      .get('https://movies-catalog-app.herokuapp.com/films/all')//, config)
+      .get('https://movies-catalog-app.herokuapp.com/films/all', config)
       .then((res) => {
         let o = res.data
         o.map(f =>{
