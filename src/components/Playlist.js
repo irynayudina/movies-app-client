@@ -7,53 +7,62 @@ const Playlist = (props) =>{
   const makeWatched = (i) => {
     console.log(props.it._id)
     console.log('watched'+i)
-    axios.post('https://movies-catalog-app.herokuapp.com/user/playlist/watched/film', {
-      "wid":  i,
-      "pid": props.it._id
-    }, {            
-      headers: {
-          authorization: "Bearer " + props.user.accessToken
-      } 
-  })
-    .then((res) => {
-    let o = res
-    console.log(o)
-    if(o.data !== "err"){
-      setPropsItems(o.data.items)
-    }
-    })
-    .catch((err) => {
-      console.log(err)
-      if (err.response.status == 403) {
-      logoutFunc()
-  }
-    });
+    axios
+      .post(
+        "https://moviesappserver-production.up.railway.app/user/playlist/watched/film",
+        {
+          wid: i,
+          pid: props.it._id,
+        },
+        {
+          headers: {
+            authorization: "Bearer " + props.user.accessToken,
+          },
+        }
+      )
+      .then((res) => {
+        let o = res;
+        console.log(o);
+        if (o.data !== "err") {
+          setPropsItems(o.data.items);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        if (err.response.status == 403) {
+          logoutFunc();
+        }
+      });
   }
   const removeFromPlaylist = (i) => {
     console.log(props.it)
     console.log('removed'+i)
-    axios.post('https://movies-catalog-app.herokuapp.com/user/playlist/delf', {
-      "pid":  props.it._id,
-      "did": i
-    },
-      {
-        headers: {
-          authorization: "Bearer " + props.user.accessToken
+    axios
+      .post(
+        "https://moviesappserver-production.up.railway.app/user/playlist/delf",
+        {
+          pid: props.it._id,
+          did: i,
+        },
+        {
+          headers: {
+            authorization: "Bearer " + props.user.accessToken,
+          },
+        }
+      )
+      .then((res) => {
+        let o = res;
+        console.log(o);
+        if (o.data !== "err") {
+          setPropsItems(o.data.items);
         }
       })
-    .then((res) => {
-    let o = res
-    console.log(o)
-    if(o.data !== "err"){
-      setPropsItems(o.data.items)
-    }
-    })
-    .catch((err) => {
-      console.log(err)
-      if (err.response.status == 403) {
-        logoutFunc()
-    }
-    });
+      .catch((err) => {
+        console.log(err);
+        if (err.response.status == 403) {
+          logoutFunc();
+        }
+      });
   }
   useEffect(()=>{
     let pitems = []

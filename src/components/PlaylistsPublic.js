@@ -12,11 +12,6 @@ const PlaylistsPublic = () =>{
   const [publ, setPubl] = useState({})
 
   useEffect(()=>{
-      // setUser(JSON.parse(localStorage.getItem('user')))
-      // console.log(localStorage.getItem('user'))
-      //http://localhost:3000/user/62ff99cf584758d149beb355/playlists/public?uid=62ff99cf584758d149beb355&&uname=alice%20smith
-      //http://localhost:3000/user/62ff99cf584758d149beb355/playlists/public?uid=62ff99cf584758d149beb355&&uname=alice%20smith
-      //http://localhost:3000/user/62ff99cf584758d149beb355/playlists/public?uid=62ff99cf584758d149beb355&&uname=alice%20smith
       console.log(user)
       const url = new URL(window.location.href);
       const u = url.searchParams.get('uid')
@@ -30,21 +25,24 @@ const PlaylistsPublic = () =>{
     if(user){
       console.log(user._id)
       axios
-        .get('https://movies-catalog-app.herokuapp.com/user/playlistPublic', {
-          params: {
-              "uid": user._id
+        .get(
+          "https://moviesappserver-production.up.railway.app/user/playlistPublic",
+          {
+            params: {
+              uid: user._id,
+            },
           }
-      })
+        )
         .then((res) => {
-          let o = res.data.filter(p => p.isPublic)
-          console.log(o)
-          console.log(user)
+          let o = res.data.filter((p) => p.isPublic);
+          console.log(o);
+          console.log(user);
           setPlaylists(o);
-          setIsLoading(false)
+          setIsLoading(false);
         })
         .catch((err) => {
           console.log(err);
-          setIsLoading(false)
+          setIsLoading(false);
         });
     }    
   }, [user, rem, publ])

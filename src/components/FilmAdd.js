@@ -55,38 +55,40 @@ const fs = require("fs")
     const formData = new FormData();
     formData.append('file', selectedFile);
     if(fnameInp !== ""){
-      axios.post('https://movies-catalog-app.herokuapp.com/films/upload', 
-    // formData
-    {
-        'film-name': fnameInp,
-        'film-actors': factorsInp,
-        'film-director': fdirectorInp,
-        'film-imdb': fimdbInp,
-        'film-description': fdescriptionInp,
-        'film-release': freleaseInp,
-        'film-genres': v,
-        'typefm': ftypefmInp,
-        'filmImage': selectedFile
-      },
-       {
-        headers: {
-        'Content-Type': 'multipart/form-data'
-        }
-    }
-    )
-      .then((res) => {
-      let o = res.data
-      console.log(o)
-      if(!o.error){
-        setSuccess(true)
-      } else {
-        setSuccess(false)
-      }
-      console.log(success)
-      })
-      .catch((err) => {
-      console.log(err)
-      });  
+      axios
+        .post(
+          "https://moviesappserver-production.up.railway.app/films/upload",
+          // formData
+          {
+            "film-name": fnameInp,
+            "film-actors": factorsInp,
+            "film-director": fdirectorInp,
+            "film-imdb": fimdbInp,
+            "film-description": fdescriptionInp,
+            "film-release": freleaseInp,
+            "film-genres": v,
+            typefm: ftypefmInp,
+            filmImage: selectedFile,
+          },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        )
+        .then((res) => {
+          let o = res.data;
+          console.log(o);
+          if (!o.error) {
+            setSuccess(true);
+          } else {
+            setSuccess(false);
+          }
+          console.log(success);
+        })
+        .catch((err) => {
+          console.log(err);
+        });  
     }
       
   }

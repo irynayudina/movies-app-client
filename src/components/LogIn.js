@@ -36,30 +36,38 @@ const LogIn = () => {
     const loginUser = (e)=>{
         e.preventDefault()
         if(emailValid && passwordValid){
-            axios.post('https://movies-catalog-app.herokuapp.com/user/login', {
-                "user-email-login": emailInp,
-                "user-password-login": pwInp                
-            })
-            .then((res) => {
-            let o = res.data
-            setUser(o);
-            })
-            .catch((err) => {
-            console.log(err)
-            });
+            axios
+              .post(
+                "https://moviesappserver-production.up.railway.app/user/login",
+                {
+                  "user-email-login": emailInp,
+                  "user-password-login": pwInp,
+                }
+              )
+              .then((res) => {
+                let o = res.data;
+                setUser(o);
+              })
+              .catch((err) => {
+                console.log(err);
+              });
         }        
     }
     const resetPassword = ()=>{
-        axios.post("https://movies-catalog-app.herokuapp.com/user/forgotpassword", {
-            "user-email-login": emailInp
-        })
-        .then((res) => {
-        let o = res.data
-        setUser(o);
-        })
-        .catch((err) => {
-        console.log(err)
-        });
+        axios
+          .post(
+            "https://moviesappserver-production.up.railway.app/user/forgotpassword",
+            {
+              "user-email-login": emailInp,
+            }
+          )
+          .then((res) => {
+            let o = res.data;
+            setUser(o);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
     }
     const [count, setCount] = useState(pwInterval) 
     useEffect(()=>{

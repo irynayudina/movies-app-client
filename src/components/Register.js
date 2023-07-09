@@ -60,23 +60,27 @@ const Register = () =>{
         setUsernameValid((usernameInp.trim() !== '') || !usernameInpTouched);
         setEmailValid((/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(emailInp.trim())) || !emailInpTouched);
         if(usernameValid && emailValid && passwordValid ){
-            axios.post('https://movies-catalog-app.herokuapp.com/user/new', {
-                'user-email': emailInp.trim(),
-                'user-password': pwInp,
-                'user-name': usernameInp.trim(),
-                'userIsNew': true
-            })
-            .then(function (response) {
-                if(response.data.error == 'User is already created'){
-                    setUsernameTaken(response.data.error+". Try another email")
-                } else {
-                    alert("Success! Try to log in in")
-                    setUsernameTaken("")
+            axios
+              .post(
+                "https://moviesappserver-production.up.railway.app/user/new",
+                {
+                  "user-email": emailInp.trim(),
+                  "user-password": pwInp,
+                  "user-name": usernameInp.trim(),
+                  userIsNew: true,
                 }
-            })
-            .catch(function (error) {
+              )
+              .then(function (response) {
+                if (response.data.error == "User is already created") {
+                  setUsernameTaken(response.data.error + ". Try another email");
+                } else {
+                  alert("Success! Try to log in in");
+                  setUsernameTaken("");
+                }
+              })
+              .catch(function (error) {
                 console.log(error);
-            });
+              });
         }
     }
     

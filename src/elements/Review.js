@@ -10,55 +10,65 @@ const Review = (props) =>{
     const r = reviewEdited;
     const [reviewRemoved, setReviewRemoved] = useState("")
     const removeComment = (cid) =>{
-        axios.post('https://movies-catalog-app.herokuapp.com/user/review/del/full', {
-            rwid: cid
-        }, {            
-            headers: {
-                authorization: "Bearer " + user.accessToken
-            } 
-        })
-        .then((res) => {
-        let o = res.data
-        if(!o.error){
-            setReviewRemoved(o)
-        }
-        })
-        .catch((err) => {
-            console.log(err)
-            if (err.response.status == 403) {
-                logoutFunc()
+        axios
+          .post(
+            "https://moviesappserver-production.up.railway.app/user/review/del/full",
+            {
+              rwid: cid,
+            },
+            {
+              headers: {
+                authorization: "Bearer " + user.accessToken,
+              },
             }
-        });
+          )
+          .then((res) => {
+            let o = res.data;
+            if (!o.error) {
+              setReviewRemoved(o);
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+            if (err.response.status == 403) {
+              logoutFunc();
+            }
+          });
     }
     const showEdditCommentForm = (ct, crat) => {
         setEditFormVisible((prevState) => !prevState)
     }
     const editReview = (cid, text, rating) => {
-        axios.post('https://movies-catalog-app.herokuapp.com/user/review/update', {
-            text: text,
-            rating: rating,
-            rwid: cid
-        }, {            
-            headers: {
-                authorization: "Bearer " + user.accessToken
-            } 
-        })
-        .then((res) => {
-        let o = res.data
-        if(!o.error){
-            var offset = new Date().getTimezoneOffset();
-            let upd = new Date(o.updatedAt)
-            var offsetTime = new Date(upd.getTime() - offset * 60 * 1000);
-            o.updatedAt = offsetTime.toISOString()
-            setReviewEdited(o)
-        }
-        })
-        .catch((err) => {
-            console.log(err)
+        axios
+          .post(
+            "https://moviesappserver-production.up.railway.app/user/review/update",
+            {
+              text: text,
+              rating: rating,
+              rwid: cid,
+            },
+            {
+              headers: {
+                authorization: "Bearer " + user.accessToken,
+              },
+            }
+          )
+          .then((res) => {
+            let o = res.data;
+            if (!o.error) {
+              var offset = new Date().getTimezoneOffset();
+              let upd = new Date(o.updatedAt);
+              var offsetTime = new Date(upd.getTime() - offset * 60 * 1000);
+              o.updatedAt = offsetTime.toISOString();
+              setReviewEdited(o);
+            }
+          })
+          .catch((err) => {
+            console.log(err);
             if (err.response.status == 403) {
-            logoutFunc()
-        }
-        });        
+              logoutFunc();
+            }
+          });        
         setEditFormVisible(false);
     }
     const showAnswerForm = ()=>{

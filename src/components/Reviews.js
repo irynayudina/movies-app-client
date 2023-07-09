@@ -41,50 +41,59 @@ const Reviews = () =>{
             alert("Log in before adding review")
         } else {
             if(textValid){
-                axios.post('https://movies-catalog-app.herokuapp.com/user/review', {
-                    fid: urlfid,
-                    uid: user._id,
-                    username: user.name,
-                    text: textInp, 
-                    rating: ratingInp,
-                }, {            
-                    headers: {
-                        authorization: "Bearer " + user.accessToken
-                    } 
-                })
-                .then((res) => {
-                let o = res.data
-                if(!o.error){
-                    setReview(o)
-                    setTextInp("")
-                    setRatingInp(8.9)
-                }
-                })
-                .catch((err) => {
-                    console.log(err)
-                    if (err.response.status == 403) {
-                        logoutFunc()
+                axios
+                  .post(
+                    "https://moviesappserver-production.up.railway.app/user/review",
+                    {
+                      fid: urlfid,
+                      uid: user._id,
+                      username: user.name,
+                      text: textInp,
+                      rating: ratingInp,
+                    },
+                    {
+                      headers: {
+                        authorization: "Bearer " + user.accessToken,
+                      },
                     }
-                });
+                  )
+                  .then((res) => {
+                    let o = res.data;
+                    if (!o.error) {
+                      setReview(o);
+                      setTextInp("");
+                      setRatingInp(8.9);
+                    }
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                    if (err.response.status == 403) {
+                      logoutFunc();
+                    }
+                  });
             }
         }        
     }
     useEffect(()=>{
         const url = new URL(window.location.href);
         const urlfid = url.searchParams.get('id')
-        axios.get('https://movies-catalog-app.herokuapp.com/user/review', {
-            params: {
-                "fid": urlfid
+        axios
+          .get(
+            "https://moviesappserver-production.up.railway.app/user/review",
+            {
+              params: {
+                fid: urlfid,
+              },
             }
-        })
-        .then((res) => {
-        let o = res.data
-        setReviews(o)
-        console.log(reviews)
-        })
-        .catch((err) => {
-        console.log(err)
-        });
+          )
+          .then((res) => {
+            let o = res.data;
+            setReviews(o);
+            console.log(reviews);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
     }, [review])
     // const updateTimeToTimezone = (r)=>{
     //     var offset = new Date().getTimezoneOffset();

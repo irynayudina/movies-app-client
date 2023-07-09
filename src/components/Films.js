@@ -69,70 +69,75 @@ const fetchFilms = () => {
   setIsLoading(true)
     if(q == ""){
       axios
-      .get('https://movies-catalog-app.herokuapp.com/films/all', config)
-      .then((res) => {
-        let o = res.data
-        o.map(f =>{
-          let t = f
-          t.release = new Date(t.release).getFullYear();
-          return t
+        .get(
+          "https://moviesappserver-production.up.railway.app/films/all",
+          config
+        )
+        .then((res) => {
+          let o = res.data;
+          o.map((f) => {
+            let t = f;
+            t.release = new Date(t.release).getFullYear();
+            return t;
+          });
+          setFilms(o);
+          setIsLoading(false);
         })
-        setFilms(o);
-        setIsLoading(false)
-      })
-      .catch((err) => {
-        console.log(err);
-        setIsLoading(false)
-      });
+        .catch((err) => {
+          console.log(err);
+          setIsLoading(false);
+        });
     } else if(url.searchParams.get('actors') != "" || url.searchParams.get('director') != "" || 
     url.searchParams.get('typefm') != "" || url.searchParams.get('sortWay') != "" || url.searchParams.get('genres') != "" || 
     url.searchParams.get('name') != ""){
       console.log('querying')
       axios
-      .get('https://movies-catalog-app.herokuapp.com/films/filter'+q)
-      .then((res) => {
-        let o = res.data
-        o.map(f =>{
-          let t = f
-          t.release = new Date(t.release).getFullYear();
-          return t
-        })
-        if(url.searchParams.get('sortWay') == 'yearSort'){
-          function compare( a, b ) {
-            if ( a.release< b.release ){
-              return 1;
+        .get(
+          "https://moviesappserver-production.up.railway.app/films/filter" + q
+        )
+        .then((res) => {
+          let o = res.data;
+          o.map((f) => {
+            let t = f;
+            t.release = new Date(t.release).getFullYear();
+            return t;
+          });
+          if (url.searchParams.get("sortWay") == "yearSort") {
+            function compare(a, b) {
+              if (a.release < b.release) {
+                return 1;
+              }
+              if (a.release > b.release) {
+                return -1;
+              }
+              return 0;
             }
-            if ( a.release > b.release){
-              return -1;
-            }
-            return 0;
+            o.sort(compare);
           }
-          o.sort(compare)
-        }
-        setFilms(o);
-        setIsLoading(false)
-      })
-      .catch((err) => {
-        console.log(err);
-        setIsLoading(false)
-      });
+          setFilms(o);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          setIsLoading(false);
+        });
     } else {
       axios
-      .get('https://movies-catalog-app.herokuapp.com/films/name'+q)
-      .then((res) => {
-        let o = res.data
-        o.map(f =>{
-          let t = f
-          t.release = new Date(t.release).getFullYear();
-          return t
+        .get("https://moviesappserver-production.up.railway.app/films/name" + q)
+        .then((res) => {
+          let o = res.data;
+          o.map((f) => {
+            let t = f;
+            t.release = new Date(t.release).getFullYear();
+            return t;
+          });
+          setFilms(o);
+          setIsLoading(false);
         })
-        setFilms(o);
-        setIsLoading(false)
-      })
-      .catch((err) => {
-        console.log(err);
-        setIsLoading(false)
-      });
+        .catch((err) => {
+          console.log(err);
+          setIsLoading(false);
+        });
     }    
 };
 const arrayBufferToBase64 = (buffer) => {
@@ -221,7 +226,6 @@ const arrayBufferToBase64 = (buffer) => {
         <h3>{film.name}</h3></a>
         <p><b>Release: </b>{film.release}</p>
         <p><b>IMDB: </b>{film.imdb}</p>
-        {/* <button className='addtowl'><a href={"http://localhost:3000/films/id?id="+film._id}>Add to watchlist</a></button> */}
         </div>
       ))}
     </div>

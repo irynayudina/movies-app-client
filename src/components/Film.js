@@ -16,42 +16,53 @@ const Film = (props) =>{
     const fid = url.searchParams.get('id'); // => 'hello'
     setIsLoading(true)
     axios
-    .get('https://movies-catalog-app.herokuapp.com/films/id?id='+fid)
-    .then((res) => {
-      const o = res.data;
-      o.image = 'data:image/jpeg;base64,' + arrayBufferToBase64(o?.image?.img?.data) //"http://cdn.bigsv.ru/oblojka/32790.jpg"
-      o.release = new Date(o.release).getFullYear();
-      if(o.genres){
-        o.genres = o.genres.map(g => {
-          let gr
-          gr = g +', '
-          return gr
-        })
-        o.genres[o.genres.length-1] =o.genres[o.genres.length-1].slice(0,-2)
-      }      
-      if(o.director){        
-        o.director = o.director.map(g => {
-          let gr
-          gr = g +', '
-          return gr
-        })
-        o.director[o.director.length-1] =o.director[o.director.length-1].slice(0,-2)      
-      }
-      if(o.actors){
-        o.actors = o.actors.map(g => {
-          let gr
-          gr = g +', '
-          return gr
-        })
-        o.actors[o.actors.length-1] =o.actors[o.actors.length-1].slice(0,-2)
-      }      
-      setFilm(o);  
-      setIsLoading(false)    
-    })
-    .catch((err) => {
-      console.log(err);
-      setIsLoading(false)
-    });
+      .get(
+        "https://moviesappserver-production.up.railway.app/films/id?id=" + fid
+      )
+      .then((res) => {
+        const o = res.data;
+        o.image =
+          "data:image/jpeg;base64," + arrayBufferToBase64(o?.image?.img?.data); 
+        o.release = new Date(o.release).getFullYear();
+        if (o.genres) {
+          o.genres = o.genres.map((g) => {
+            let gr;
+            gr = g + ", ";
+            return gr;
+          });
+          o.genres[o.genres.length - 1] = o.genres[o.genres.length - 1].slice(
+            0,
+            -2
+          );
+        }
+        if (o.director) {
+          o.director = o.director.map((g) => {
+            let gr;
+            gr = g + ", ";
+            return gr;
+          });
+          o.director[o.director.length - 1] = o.director[
+            o.director.length - 1
+          ].slice(0, -2);
+        }
+        if (o.actors) {
+          o.actors = o.actors.map((g) => {
+            let gr;
+            gr = g + ", ";
+            return gr;
+          });
+          o.actors[o.actors.length - 1] = o.actors[o.actors.length - 1].slice(
+            0,
+            -2
+          );
+        }
+        setFilm(o);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsLoading(false);
+      });
   }, []);
 const arrayBufferToBase64 = (buffer) => {
   return buffer?.toString('base64');
@@ -115,24 +126,24 @@ useEffect(()=>{
   // setIsLoading(true)
   if(user){
     axios
-      .get('https://movies-catalog-app.herokuapp.com/user/playlist', {
+      .get("https://moviesappserver-production.up.railway.app/user/playlist", {
         headers: {
-          authorization: "Bearer " + user.accessToken
+          authorization: "Bearer " + user.accessToken,
         },
         params: {
-            "uid": user._id
-        }
-    })
+          uid: user._id,
+        },
+      })
       .then((res) => {
-        let o = res.data
+        let o = res.data;
         setPlaylist(o);
         // setIsLoading(false)
       })
       .catch((err) => {
         console.log(err);
         if (err.response.status == 403) {
-          logoutFunc()
-      }
+          logoutFunc();
+        }
       });
   }    
 }, [user])
@@ -181,25 +192,30 @@ const [name2Inp, setName2Inp] = useState("")
       const urlfid = url.searchParams.get('id')
       e.preventDefault();
       if(nameValid){
-        axios.post('https://movies-catalog-app.herokuapp.com/user/playlist/new/film', {
-            name: nameInp,
-            uid: user._id,
-            fid:urlfid, 
-            fname: film.name
-        }, {            
-          headers: {
-              authorization: "Bearer " + user.accessToken
-          } 
-      })
-        .then((res) => {
-        let o = res.data
-        if(!o.error){
-          alert("film was sucessfully added to watchlist")
-        }
-        })
-        .catch((err) => {
-        console.log(err)
-      });
+        axios
+          .post(
+            "https://moviesappserver-production.up.railway.app/user/playlist/new/film",
+            {
+              name: nameInp,
+              uid: user._id,
+              fid: urlfid,
+              fname: film.name,
+            },
+            {
+              headers: {
+                authorization: "Bearer " + user.accessToken,
+              },
+            }
+          )
+          .then((res) => {
+            let o = res.data;
+            if (!o.error) {
+              alert("film was sucessfully added to watchlist");
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
     }     
   }
   const [plid2, setPlid2] = useState("");
@@ -211,24 +227,29 @@ const [name2Inp, setName2Inp] = useState("")
       console.log(name2Inp)
       e.preventDefault();
       if(name2Valid){
-        axios.post('https://movies-catalog-app.herokuapp.com/user/playlist', {
-          plid: name2Inp,
-          fid: urlfid, 
-          fname: film.name
-        }, {            
-          headers: {
-              authorization: "Bearer " + user.accessToken
-          } 
-      })
-        .then((res) => {
-        let o = res.data
-        if(!o.error){
-          alert("film was sucessfully added to watchlist")
-        }
-        })
-        .catch((err) => {
-        console.log(err)
-      });
+        axios
+          .post(
+            "https://moviesappserver-production.up.railway.app/user/playlist",
+            {
+              plid: name2Inp,
+              fid: urlfid,
+              fname: film.name,
+            },
+            {
+              headers: {
+                authorization: "Bearer " + user.accessToken,
+              },
+            }
+          )
+          .then((res) => {
+            let o = res.data;
+            if (!o.error) {
+              alert("film was sucessfully added to watchlist");
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
     }
   }
   const stringForContext = "new value";

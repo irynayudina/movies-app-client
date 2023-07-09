@@ -17,65 +17,79 @@ const Playlists = () =>{
   useEffect(()=>{
     setIsLoading(true)
     if(user){
-      axios.get('https://movies-catalog-app.herokuapp.com/user/playlist', {
-          headers: {
-            authorization: "Bearer " + user.accessToken
-          },
-          params: {
-              "uid": user._id
+      axios
+        .get(
+          "https://moviesappserver-production.up.railway.app/user/playlist",
+          {
+            headers: {
+              authorization: "Bearer " + user.accessToken,
+            },
+            params: {
+              uid: user._id,
+            },
           }
-      })
+        )
         .then((res) => {
-          let o = res.data
+          let o = res.data;
           setPlaylists(o);
-          setIsLoading(false)
+          setIsLoading(false);
         })
         .catch((err) => {
           console.log(err);
-          setIsLoading(false)
+          setIsLoading(false);
           if (err.response.status == 403) {
-            logoutFunc()
-        }
+            logoutFunc();
+          }
         });
     }    
   }, [user, rem, publ])
   const removePlaylist = (i) => {
-    axios.post('https://movies-catalog-app.herokuapp.com/user/playlist/del', {
-      "pid":  i
-    }, {            
-      headers: {
-        authorization: "Bearer " + user.accessToken
-      } 
-    })
-    .then((res) => {
-    let o = res
-    setRem(o)
-    })
-    .catch((err) => {
-      console.log(err)
-      if (err.response.status == 403) {
-        logoutFunc()
-    }
-    });
+    axios
+      .post(
+        "https://moviesappserver-production.up.railway.app/user/playlist/del",
+        {
+          pid: i,
+        },
+        {
+          headers: {
+            authorization: "Bearer " + user.accessToken,
+          },
+        }
+      )
+      .then((res) => {
+        let o = res;
+        setRem(o);
+      })
+      .catch((err) => {
+        console.log(err);
+        if (err.response.status == 403) {
+          logoutFunc();
+        }
+      });
   }
   const makePublic = (i) => {
-    axios.post('https://movies-catalog-app.herokuapp.com/user/playlist/public', {
-      "pid":  i
-    }, {            
-      headers: {
-        authorization: "Bearer " + user.accessToken
-      } 
-    })
-    .then((res) => {
-    let o = res
-    setPubl(o)
-    })
-    .catch((err) => {
-      console.log(err)
-      if (err.response.status == 403) {
-        logoutFunc()
-    }
-    });
+    axios
+      .post(
+        "https://moviesappserver-production.up.railway.app/user/playlist/public",
+        {
+          pid: i,
+        },
+        {
+          headers: {
+            authorization: "Bearer " + user.accessToken,
+          },
+        }
+      )
+      .then((res) => {
+        let o = res;
+        setPubl(o);
+      })
+      .catch((err) => {
+        console.log(err);
+        if (err.response.status == 403) {
+          logoutFunc();
+        }
+      });
   }
     return  (
       <>

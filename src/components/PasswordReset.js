@@ -73,33 +73,42 @@ const ChangePasswordLab = () =>{
     const changePW = (e)=>{
         e.preventDefault()
         if(passwordValid && passwordSame){
-            axios.post('https://movies-catalog-app.herokuapp.com/user/pwreset', {
-            em: user.email,
-            opw: pwOld, 
-            npw: pwInp,
-            }, {            
-                headers: {
-                    authorization: "Bearer " + user.accessToken
-                } 
-            }).then((res) => {
-                let o = res.data
-                setUser(o)
-                setPwInterval(o.pwWait)
-                setCount(o.pwWait)
-            if(!o.error){
-                alert("password changed successfully")  
-                localStorage.setItem('user', JSON.stringify(o))              
-                setTimeout(()=>{  
-                    if(first) window.location.replace(`http://localhost:3000/user/playlists`);
-                }, 2000)
-            }
-            })
-            .catch((err) => {
-                console.log(err)
-                if (err.response.status == 403) {
-                    logoutFunc()
+            axios
+              .post(
+                "https://moviesappserver-production.up.railway.app/user/pwreset",
+                {
+                  em: user.email,
+                  opw: pwOld,
+                  npw: pwInp,
+                },
+                {
+                  headers: {
+                    authorization: "Bearer " + user.accessToken,
+                  },
                 }
-            });
+              )
+              .then((res) => {
+                let o = res.data;
+                setUser(o);
+                setPwInterval(o.pwWait);
+                setCount(o.pwWait);
+                if (!o.error) {
+                  alert("password changed successfully");
+                  localStorage.setItem("user", JSON.stringify(o));
+                  setTimeout(() => {
+                    if (first)
+                      window.location.replace(
+                        `https://movies-app-playlists.netlify.app/user/playlists`
+                      );
+                  }, 2000);
+                }
+              })
+              .catch((err) => {
+                console.log(err);
+                if (err.response.status == 403) {
+                  logoutFunc();
+                }
+              });
         }
     }
     
