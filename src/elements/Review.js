@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from "react";
 import ReviewForm from './ReviewForm';
 import logoutFunc from '../utility/logoutFunc';
 const Review = (props) =>{
