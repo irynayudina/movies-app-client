@@ -43,7 +43,6 @@ const fs = require("fs")
     }
     const fimageHandler = (e)=>{
         setfimageInp(e.target.files[0])
-        console.log(e.target.files[0])
     }
     const [success, setSuccess] = useState(false)
     
@@ -78,13 +77,11 @@ const fs = require("fs")
         )
         .then((res) => {
           let o = res.data;
-          console.log(o);
           if (!o.error) {
             setSuccess(true);
           } else {
             setSuccess(false);
           }
-          console.log(success);
         })
         .catch((err) => {
           console.log(err);
@@ -116,10 +113,7 @@ const fs = require("fs")
           setInitialGenre(e.target.value)
       }
       useEffect(()=>{
-          console.log(genresSelected)
           setV([...genresSelected].toString())
-          console.log(v)
-          console.log(selectedFile)
       }, [genresSelected, v, selectedFile])
       const [fnameTouched, setfnameTouched] = useState(false)
       const [fnameValid,  setfnameValid] = useState(false)

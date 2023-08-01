@@ -541,7 +541,6 @@ footer h2 a:hover{
   margin-bottom: 10px;
 }
 .playlist-control{
-  position: absolute;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;

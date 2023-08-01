@@ -9,8 +9,6 @@ const Reviews = () =>{
     const [user, setUser] = useState("")
     useEffect(()=>{
         setUser(JSON.parse(localStorage.getItem('user')))
-        console.log(localStorage.getItem('user'))
-        console.log("messageFromContextProvidedbyParentFilm logged in child reviews " + messageFromContextProvidedbyParentFilm)
     }, [])
 
     const [textValid, setTextValid] = useState(false)
@@ -86,7 +84,6 @@ const Reviews = () =>{
           .then((res) => {
             let o = res.data;
             setReviews(o);
-            console.log(reviews);
           })
           .catch((err) => {
             console.log(err);

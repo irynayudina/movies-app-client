@@ -67,13 +67,17 @@ const LogIn = () => {
     useEffect(()=>{
         if(user && !user.error && user._id != undefined){
             localStorage.setItem('user', JSON.stringify(user))
-            if(user.userIsNew){
-                localStorage.setItem('user_new_tried_login', user.email)
-                localStorage.removeItem('user');
-                window.location.replace(`https://movies-app-playlists.netlify.app/user/passwordreset`);
-            } else {
-                window.location.replace(`https://movies-app-playlists.netlify.app/user/playlists`);
-            }
+            window.location.replace(
+                `https://movies-app-playlists.netlify.app/user/playlists`
+            );
+        
+            // if(user.userIsNew){
+            //     localStorage.setItem('user_new_tried_login', user.email)
+            //     localStorage.removeItem('user');
+            //     window.location.replace(`https://movies-app-playlists.netlify.app/user/passwordreset`);
+            // } else {
+            //     window.location.replace(`https://movies-app-playlists.netlify.app/user/playlists`);
+            // }
         }
         if (user && user.pwWait) {
             setPwInterval(user.pwWait)

@@ -28,7 +28,7 @@ const Films = () => {
         setScreenSize("xxl")
       }
     function handleResize() {
-      console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
+      // console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
       let s = window.innerWidth
       if(s<580){
         setScreenSize("xs")
@@ -43,7 +43,7 @@ const Films = () => {
       } if(s >= 1400){
         setScreenSize("xxl")
       }
-      console.log(screenSize)
+      // console.log(screenSize)
     }
     window.addEventListener('resize', handleResize);
     return () => {window.removeEventListener('resize', handleResize)}    
@@ -65,7 +65,7 @@ const Films = () => {
       }))
   }, [films]);
 const fetchFilms = () => {
-  console.log(url.search)
+  // console.log(url.search)
   setIsLoading(true)
     if(q == ""){
       axios
@@ -87,7 +87,7 @@ const fetchFilms = () => {
     } else if(url.searchParams.get('actors') != "" || url.searchParams.get('director') != "" || 
     url.searchParams.get('typefm') != "" || url.searchParams.get('sortWay') != "" || url.searchParams.get('genres') != "" || 
     url.searchParams.get('name') != ""){
-      console.log('querying')
+      // console.log('querying')
       axios
         .get("https://movies-site-server.onrender.com/films/filter" + q)
         .then((res) => {

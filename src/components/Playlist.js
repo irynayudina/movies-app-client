@@ -5,8 +5,6 @@ const Playlist = (props) =>{
   const [plItems, setPlItems] = useState([])
   const [propsItems, setPropsItems] = useState(props.it.items)
   const makeWatched = (i) => {
-    console.log(props.it._id)
-    console.log('watched'+i)
     axios
       .post(
         "https://movies-site-server.onrender.com/user/playlist/watched/film",
@@ -22,7 +20,6 @@ const Playlist = (props) =>{
       )
       .then((res) => {
         let o = res;
-        console.log(o);
         if (o.data !== "err") {
           setPropsItems(o.data.items);
         }
@@ -35,8 +32,6 @@ const Playlist = (props) =>{
       });
   }
   const removeFromPlaylist = (i) => {
-    console.log(props.it)
-    console.log('removed'+i)
     axios
       .post(
         "https://movies-site-server.onrender.com/user/playlist/delf",
@@ -52,7 +47,6 @@ const Playlist = (props) =>{
       )
       .then((res) => {
         let o = res;
-        console.log(o);
         if (o.data !== "err") {
           setPropsItems(o.data.items);
         }
@@ -111,7 +105,6 @@ const Playlist = (props) =>{
       })
     }
     setPlItems(pitems)
-    console.log("list: "+JSON.stringify(props.it.items))
   }, [propsItems])
     return  (
       <>

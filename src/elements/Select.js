@@ -18,9 +18,7 @@ const Select = () =>{
         setInitialGenre(e.target.value)
     }
     useEffect(()=>{
-        console.log(genresSelected)
         setV([...genresSelected].toString())
-        console.log(v)
     }, [genresSelected, v])
     return (
         <>

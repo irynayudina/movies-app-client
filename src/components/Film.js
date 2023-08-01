@@ -67,7 +67,7 @@ const arrayBufferToBase64 = (buffer) => {
 };useEffect(()=>{
   let s = window.innerWidth
   function handleResize() {
-    console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
+    // console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
     let s = window.innerWidth    
   }
   window.addEventListener('resize', handleResize);
@@ -89,7 +89,7 @@ useEffect(()=>{
       setScreenSize("xxl")
     }
   function handleResize() {
-    console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
+    // console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
     let s = window.innerWidth
     if(s<576){
       setScreenSize("xs")
@@ -117,8 +117,7 @@ const [playlistHidden, setPlaylistHidden] = useState(true)
 const [playlists, setPlaylist] = useState([])
 const [user, setUser] = useState("")
 useEffect(()=>{
-    setUser(JSON.parse(localStorage.getItem('user')))
-    console.log(localStorage.getItem('user'))    
+  setUser(JSON.parse(localStorage.getItem('user')))
 }, [])
 useEffect(()=>{
   // setIsLoading(true)
@@ -221,8 +220,6 @@ const [name2Inp, setName2Inp] = useState("")
   const addToPlaylist =(e) =>{
     const url = new URL(window.location.href);
       const urlfid = url.searchParams.get('id')
-      console.log("pl name")
-      console.log(name2Inp)
       e.preventDefault();
       if(name2Valid){
         axios

@@ -12,18 +12,14 @@ const PlaylistsPublic = () =>{
   const [publ, setPubl] = useState({})
 
   useEffect(()=>{
-      console.log(user)
       const url = new URL(window.location.href);
       const u = url.searchParams.get('uid')
-      console.log(u)
       const un = url.searchParams.get('uname')
-      console.log(un)
       setUser({_id:u, name:un})
   }, [])
   useEffect(()=>{
     setIsLoading(true)
     if(user){
-      console.log(user._id)
       axios
         .get("https://movies-site-server.onrender.com/user/playlistPublic", {
           params: {
@@ -32,8 +28,6 @@ const PlaylistsPublic = () =>{
         })
         .then((res) => {
           let o = res.data.filter((p) => p.isPublic);
-          console.log(o);
-          console.log(user);
           setPlaylists(o);
           setIsLoading(false);
         })
