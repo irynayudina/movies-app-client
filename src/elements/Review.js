@@ -3,11 +3,25 @@ import { useState } from 'react';
 import ReviewForm from './ReviewForm';
 import logoutFunc from '../utility/logoutFunc';
 const Review = (props) =>{
-    const user = props.user
-    const [editForm, setEditFormVisible] = useState(false)
-    const [answerForm, setAnswerFormVisible] =useState(false)
+  const user = props.user
+  const [editForm, setEditFormVisible] = useState(false)
+  const [answerForm, setAnswerFormVisible] =useState(false)
   const [r, setReviewEdited] = useState(props.rev);
-    const [reviewRemoved, setReviewRemoved] = useState("")
+  const [reviewRemoved, setReviewRemoved] = useState("");
+
+  const updateTimeToTimezone = (review) => {
+    const o = review;
+    var offset = new Date().getTimezoneOffset();
+    let upd = new Date(o.updatedAt);
+    var offsetTime = new Date(upd.getTime() - offset * 60 * 1000);
+    o.updatedAt = offsetTime.toISOString();
+    return o;
+  };
+
+  useEffect(() => {
+    setReviewEdited(updateTimeToTimezone(r));
+  }, [r])
+  
     const removeComment = (cid) =>{
         axios
           .post(
@@ -55,11 +69,7 @@ const Review = (props) =>{
           .then((res) => {
             let o = res.data;
             if (!o.error) {
-              var offset = new Date().getTimezoneOffset();
-              let upd = new Date(o.updatedAt);
-              var offsetTime = new Date(upd.getTime() - offset * 60 * 1000);
-              o.updatedAt = offsetTime.toISOString();
-              setReviewEdited(o);
+              setReviewEdited(updateTimeToTimezone(o));
             }
           })
           .catch((err) => {

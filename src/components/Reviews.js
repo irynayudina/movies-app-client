@@ -58,7 +58,7 @@ const Reviews = () =>{
                   .then((res) => {
                     let o = res.data;
                     if (!o.error) {
-                      setReview(o);
+                      setReview(updateTimeToTimezone(o));
                       setTextInp("");
                       setRatingInp(8.9);
                     }
@@ -89,12 +89,14 @@ const Reviews = () =>{
             console.log(err);
           });
     }, [review])
-    // const updateTimeToTimezone = (r)=>{
-    //     var offset = new Date().getTimezoneOffset();
-    //     let upd = new Date(r.updatedAt)
-    //     var offsetTime = new Date(upd.getTime() + offset / (-60) * 60 * 60 * 1000);
-    //     r.updatedAt = offsetTime.toISOString()
-    // }
+  const updateTimeToTimezone = (review) => {
+    const o = review;
+    var offset = new Date().getTimezoneOffset();
+    let upd = new Date(o.updatedAt);
+    var offsetTime = new Date(upd.getTime() - offset * 60 * 1000);
+    o.updatedAt = offsetTime.toISOString();
+    return o;
+    }
     return  (
         <>
         <div className="add-review"> 
