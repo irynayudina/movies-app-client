@@ -54,31 +54,17 @@ const Review = (props) =>{
             }
           )
           .then((res) => {
-            // let o = res.data;
-            // if (!o.error) {
-            //   var offset = new Date().getTimezoneOffset();
-            //   let upd = new Date(o.updatedAt);
-            //   var offsetTime = new Date(upd.getTime() + offset * 60 * 1000);
-            //   o.updatedAt = offsetTime.toISOString();
-            //   setReviewEdited(o);
-            // }
             let o = res.data;
             if (!o.error) {
               let upd = new Date(o.updatedAt);
-              let options = { timeZone: "UTC" }; // Set the initial timezone as UTC, as the response comes from MongoDB in UTC format.
+              const now = new Date();
+              const minutesToAdd = now.getTimezoneOffset();
+              upd.setUTCMinutes(upd.getUTCMinutes() + minutesToAdd);
+              let options = { timeZone: "UTC" };
               let utcString = upd.toLocaleString("en-US", options);
-
-              // Now, create a new Date object using the UTC string to handle timezone conversion.
               let updatedTime = new Date(utcString);
-
-              // If you want to update the original 'o.updatedAt', you can use the following:
               o.updatedAt = updatedTime.toISOString();
-
-              // Alternatively, if you want to store the converted date in a separate variable, use this:
-              // let updatedTimeISOString = updatedTime.toISOString();
-              // setReviewEdited({ ...o, updatedAt: updatedTimeISOString });
             }
-
           })
           .catch((err) => {
             console.log(err);
