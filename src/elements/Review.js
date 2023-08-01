@@ -6,8 +6,7 @@ const Review = (props) =>{
     const user = props.user
     const [editForm, setEditFormVisible] = useState(false)
     const [answerForm, setAnswerFormVisible] =useState(false)
-    const [reviewEdited, setReviewEdited] = useState(props.rev)
-    const r = reviewEdited;
+  const [r, setReviewEdited] = useState(props.rev);
     const [reviewRemoved, setReviewRemoved] = useState("")
     const removeComment = (cid) =>{
         axios
@@ -64,6 +63,7 @@ const Review = (props) =>{
               let utcString = upd.toLocaleString("en-US", options);
               let updatedTime = new Date(utcString);
               o.updatedAt = updatedTime.toISOString();
+              setReviewEdited(o);
             }
           })
           .catch((err) => {
