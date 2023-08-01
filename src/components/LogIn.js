@@ -100,37 +100,65 @@ const LogIn = () => {
     };
     const [passwordShown, setPasswordShown] = useState(false);
     return (
-        <>
+      <>
         <Header />
-        <div className="add-films"> 
-            <h1>Log in</h1>
-            <div className="hr"></div>
-                <div className='err'>{user.error}</div>
-                <div className='err'>{user.pwEmail}</div>
-                <div className='err'>{pwInterval?'Timer: '+count:""}</div>
-            <form onSubmit={loginUser}>
-                <label htmlFor="user-email-login">Email Address</label>
-                <input type="email" id="user-email-login" name="user-email-login" aria-describedby="emailLoginHelp" 
-                placeholder="mypersonalmail123@gmail.com"
-                onChange={eHandler}
-                onBlur={eBlurHandler}
-                value={emailInp} />
-                {emailInpTouched && !emailValid && <div className='err'><small>Incorrect format of email (user123@mail.com)</small></div>}
-                
-                <label htmlFor="user-password-login">Password</label>
-                <input type={passwordShown?"text":"password"} id="user-password-login" name="user-password-login" autoComplete="on"
-                onChange={pHandler}
-                onBlur={pwBlurHandler}
-                value={pwInp} />
-                <div className="clickable i" onClick={togglePasswordVisiblity}>{eye}</div>           
-                {pwInpTouched && !passwordValid && <div className='err'><small>Password can`t be empty</small></div>}
-                <button type="submit" >Submit</button>
-            </form>
-            <a href="https://movies-app-playlists.netlify.app/register">Register</a>
-            <a href="#" onClick={resetPassword} style={{"float":"right"}}>Forgot password</a>
-            </div>          
+        <div className="add-films">
+          <h1>Log in</h1>
+          <div className="hr"></div>
+          <div className="err">{user.error}</div>
+          <div className="err">{user.pwEmail}</div>
+          <div className="err">{pwInterval ? "Timer: " + count : ""}</div>
+          <form onSubmit={loginUser}>
+            <label htmlFor="user-email-login">Email Address</label>
+            <input
+              type="email"
+              id="user-email-login"
+              name="user-email-login"
+              aria-describedby="emailLoginHelp"
+              placeholder="mypersonalmail123@gmail.com"
+              onChange={eHandler}
+              onBlur={eBlurHandler}
+              value={emailInp}
+            />
+            {emailInpTouched && !emailValid && (
+              <div className="err">
+                <small>Incorrect format of email (user123@mail.com)</small>
+              </div>
+            )}
+
+            <label htmlFor="user-password-login">Password</label>
+            <div
+              style={{ display: "inline", marginLeft: '1rem' }}
+              className="clickable i"
+              onClick={togglePasswordVisiblity}
+            >
+              {eye}
+            </div>
+            <input
+              type={passwordShown ? "text" : "password"}
+              id="user-password-login"
+              name="user-password-login"
+              autoComplete="on"
+              onChange={pHandler}
+              onBlur={pwBlurHandler}
+              value={pwInp}
+            />
+            {pwInpTouched && !passwordValid && (
+              <div className="err">
+                <small>Password can`t be empty</small>
+              </div>
+            )}
+            <button type="submit">Submit</button>
+          </form>
+          <a href="https://movies-app-playlists.netlify.app/register">
+            Register
+          </a>
+          <a href="#" onClick={resetPassword} style={{ float: "right" }}>
+            Forgot password
+          </a>
+        </div>
         <Footer />
-        </>
-    )
+      </>
+    );
 }
 export default LogIn;
