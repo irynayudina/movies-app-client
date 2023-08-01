@@ -215,7 +215,6 @@ const [name2Inp, setName2Inp] = useState("")
           });
     }     
   }
-  const [plid2, setPlid2] = useState("");
 
   const addToPlaylist =(e) =>{
     const url = new URL(window.location.href);
