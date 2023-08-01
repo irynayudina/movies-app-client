@@ -25,14 +25,11 @@ const PlaylistsPublic = () =>{
     if(user){
       console.log(user._id)
       axios
-        .get(
-          "https://moviesappserver-production.up.railway.app/user/playlistPublic",
-          {
-            params: {
-              uid: user._id,
-            },
-          }
-        )
+        .get("https://movies-site-server.onrender.com/user/playlistPublic", {
+          params: {
+            uid: user._id,
+          },
+        })
         .then((res) => {
           let o = res.data.filter((p) => p.isPublic);
           console.log(o);

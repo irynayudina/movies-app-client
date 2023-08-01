@@ -16,13 +16,11 @@ const Film = (props) =>{
     const fid = url.searchParams.get('id'); // => 'hello'
     setIsLoading(true)
     axios
-      .get(
-        "https://moviesappserver-production.up.railway.app/films/id?id=" + fid
-      )
+      .get("https://movies-site-server.onrender.com/films/id?id=" + fid)
       .then((res) => {
         const o = res.data;
         o.image =
-          "data:image/jpeg;base64," + arrayBufferToBase64(o?.image?.img?.data); 
+          "data:image/jpeg;base64," + arrayBufferToBase64(o?.image?.img?.data);
         o.release = new Date(o.release).getFullYear();
         if (o.genres) {
           o.genres = o.genres.map((g) => {
@@ -126,7 +124,7 @@ useEffect(()=>{
   // setIsLoading(true)
   if(user){
     axios
-      .get("https://moviesappserver-production.up.railway.app/user/playlist", {
+      .get("https://movies-site-server.onrender.com/user/playlist", {
         headers: {
           authorization: "Bearer " + user.accessToken,
         },
@@ -194,7 +192,7 @@ const [name2Inp, setName2Inp] = useState("")
       if(nameValid){
         axios
           .post(
-            "https://moviesappserver-production.up.railway.app/user/playlist/new/film",
+            "https://movies-site-server.onrender.com/user/playlist/new/film",
             {
               name: nameInp,
               uid: user._id,
@@ -229,7 +227,7 @@ const [name2Inp, setName2Inp] = useState("")
       if(name2Valid){
         axios
           .post(
-            "https://moviesappserver-production.up.railway.app/user/playlist",
+            "https://movies-site-server.onrender.com/user/playlist",
             {
               plid: name2Inp,
               fid: urlfid,

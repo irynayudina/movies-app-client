@@ -69,10 +69,7 @@ const fetchFilms = () => {
   setIsLoading(true)
     if(q == ""){
       axios
-        .get(
-          "https://moviesappserver-production.up.railway.app/films/all",
-          config
-        )
+        .get("https://movies-site-server.onrender.com/films/all", config)
         .then((res) => {
           let o = res.data;
           o.map((f) => {
@@ -92,9 +89,7 @@ const fetchFilms = () => {
     url.searchParams.get('name') != ""){
       console.log('querying')
       axios
-        .get(
-          "https://moviesappserver-production.up.railway.app/films/filter" + q
-        )
+        .get("https://movies-site-server.onrender.com/films/filter" + q)
         .then((res) => {
           let o = res.data;
           o.map((f) => {
@@ -123,7 +118,7 @@ const fetchFilms = () => {
         });
     } else {
       axios
-        .get("https://moviesappserver-production.up.railway.app/films/name" + q)
+        .get("https://movies-site-server.onrender.com/films/name" + q)
         .then((res) => {
           let o = res.data;
           o.map((f) => {

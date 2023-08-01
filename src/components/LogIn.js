@@ -37,13 +37,10 @@ const LogIn = () => {
         e.preventDefault()
         if(emailValid && passwordValid){
             axios
-              .post(
-                "https://moviesappserver-production.up.railway.app/user/login",
-                {
-                  "user-email-login": emailInp,
-                  "user-password-login": pwInp,
-                }
-              )
+              .post("https://movies-site-server.onrender.com/user/login", {
+                "user-email-login": emailInp,
+                "user-password-login": pwInp,
+              })
               .then((res) => {
                 let o = res.data;
                 setUser(o);
@@ -55,12 +52,9 @@ const LogIn = () => {
     }
     const resetPassword = ()=>{
         axios
-          .post(
-            "https://moviesappserver-production.up.railway.app/user/forgotpassword",
-            {
-              "user-email-login": emailInp,
-            }
-          )
+          .post("https://movies-site-server.onrender.com/user/forgotpassword", {
+            "user-email-login": emailInp,
+          })
           .then((res) => {
             let o = res.data;
             setUser(o);

@@ -57,7 +57,7 @@ const fs = require("fs")
     if(fnameInp !== ""){
       axios
         .post(
-          "https://moviesappserver-production.up.railway.app/films/upload",
+          "https://movies-site-server.onrender.com/films/upload",
           // formData
           {
             "film-name": fnameInp,

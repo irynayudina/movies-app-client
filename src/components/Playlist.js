@@ -9,7 +9,7 @@ const Playlist = (props) =>{
     console.log('watched'+i)
     axios
       .post(
-        "https://moviesappserver-production.up.railway.app/user/playlist/watched/film",
+        "https://movies-site-server.onrender.com/user/playlist/watched/film",
         {
           wid: i,
           pid: props.it._id,
@@ -39,7 +39,7 @@ const Playlist = (props) =>{
     console.log('removed'+i)
     axios
       .post(
-        "https://moviesappserver-production.up.railway.app/user/playlist/delf",
+        "https://movies-site-server.onrender.com/user/playlist/delf",
         {
           pid: props.it._id,
           did: i,

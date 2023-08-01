@@ -12,7 +12,7 @@ const Review = (props) =>{
     const removeComment = (cid) =>{
         axios
           .post(
-            "https://moviesappserver-production.up.railway.app/user/review/del/full",
+            "https://movies-site-server.onrender.com/user/review/del/full",
             {
               rwid: cid,
             },
@@ -41,7 +41,7 @@ const Review = (props) =>{
     const editReview = (cid, text, rating) => {
         axios
           .post(
-            "https://moviesappserver-production.up.railway.app/user/review/update",
+            "https://movies-site-server.onrender.com/user/review/update",
             {
               text: text,
               rating: rating,

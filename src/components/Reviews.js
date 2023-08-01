@@ -43,7 +43,7 @@ const Reviews = () =>{
             if(textValid){
                 axios
                   .post(
-                    "https://moviesappserver-production.up.railway.app/user/review",
+                    "https://movies-site-server.onrender.com/user/review",
                     {
                       fid: urlfid,
                       uid: user._id,
@@ -78,14 +78,11 @@ const Reviews = () =>{
         const url = new URL(window.location.href);
         const urlfid = url.searchParams.get('id')
         axios
-          .get(
-            "https://moviesappserver-production.up.railway.app/user/review",
-            {
-              params: {
-                fid: urlfid,
-              },
-            }
-          )
+          .get("https://movies-site-server.onrender.com/user/review", {
+            params: {
+              fid: urlfid,
+            },
+          })
           .then((res) => {
             let o = res.data;
             setReviews(o);

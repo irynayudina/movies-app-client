@@ -18,17 +18,14 @@ const Playlists = () =>{
     setIsLoading(true)
     if(user){
       axios
-        .get(
-          "https://moviesappserver-production.up.railway.app/user/playlist",
-          {
-            headers: {
-              authorization: "Bearer " + user.accessToken,
-            },
-            params: {
-              uid: user._id,
-            },
-          }
-        )
+        .get("https://movies-site-server.onrender.com/user/playlist", {
+          headers: {
+            authorization: "Bearer " + user.accessToken,
+          },
+          params: {
+            uid: user._id,
+          },
+        })
         .then((res) => {
           let o = res.data;
           setPlaylists(o);
@@ -46,7 +43,7 @@ const Playlists = () =>{
   const removePlaylist = (i) => {
     axios
       .post(
-        "https://moviesappserver-production.up.railway.app/user/playlist/del",
+        "https://movies-site-server.onrender.com/user/playlist/del",
         {
           pid: i,
         },
@@ -70,7 +67,7 @@ const Playlists = () =>{
   const makePublic = (i) => {
     axios
       .post(
-        "https://moviesappserver-production.up.railway.app/user/playlist/public",
+        "https://movies-site-server.onrender.com/user/playlist/public",
         {
           pid: i,
         },

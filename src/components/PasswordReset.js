@@ -75,7 +75,7 @@ const ChangePasswordLab = () =>{
         if(passwordValid && passwordSame){
             axios
               .post(
-                "https://moviesappserver-production.up.railway.app/user/pwreset",
+                "https://movies-site-server.onrender.com/user/pwreset",
                 {
                   em: user.email,
                   opw: pwOld,
