@@ -28,6 +28,7 @@
 }
 .clickable-text{
   color: blueviolet;
+  display: inline-block;
 }
 .clickable-text:hover, .clickable:hover{
   color: deeppink;
