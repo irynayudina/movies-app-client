@@ -546,6 +546,8 @@ footer h2 a:hover{
   justify-content: space-between;
   align-items: flex-start;
   width: 300px;
+  box-sizing: border-box;
+  padding: 1rem;
 }
 .make-public{
   color: white;

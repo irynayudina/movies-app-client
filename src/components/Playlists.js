@@ -94,7 +94,6 @@ const Playlists = () =>{
       <div style={{"paddingLeft":"10px"}}>
       <p className='err'>{user?.name}</p>
       <p className='err'>{user?.email}</p>
-      <p><small>Created: </small></p><p className='err'>{user?.createdAt?.slice(0,10)}</p>
       </div>  
       <h2 style={{"paddingLeft":"10px"}}>Watchlists:</h2>
       <div className="page-body-films">
