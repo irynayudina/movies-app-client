@@ -149,38 +149,74 @@ const ChangePasswordLab = () =>{
     };
     const [passwordShown2, setPasswordShown2] = useState(false);
     return (
-    <>
-    <Header />
-        <div className="add-films"> 
-            <h1>{first ? "It is your first log in! Change password":"Change password"}</h1>
-            <div className="hr"></div>
-                <div className='err'>{count>0?user.error:""}</div>
-                <div className='err'>{pwInterval?'Timer: '+count:""}</div>
-            <form onSubmit={changePW}>
-
-                <label>Old password</label>
-                <input type={passwordShown2?"text":"password"} onChange={pwOldHandler}/>
-                <div className="clickable i" onClick={togglePasswordVisiblity2}>{eye}</div>  
-                
-                <label htmlFor="user-password">Password</label>
-                <input type={passwordShown1?"text":"password"} id="user-password" name="user-password"  placeholder="" autoComplete="on"
-                onChange={pHandler}
-                onBlur={pwBlurHandler}
-                value={pwInp} />
-                <div className="clickable i" onClick={togglePasswordVisiblity1}>{eye}</div>           
-                {!passwordValid && pwInpTouched && <div className='err'><small>{passwordError}</small></div>}
-            
-                <label htmlFor="user-password2">Repeat Password</label>
-                <input type={passwordShown1?"text":"password"} id="user-password2" name="user-password2" placeholder="" autoComplete="on" 
-                onChange={p2Handler}
-                onBlur={pw2BlurHandler}
-                value={pw2Inp} />         
-                {!passwordSame && <div className='err'><small>Passwords don't match</small></div>}
-                    
-                <button type="submit">Submit</button>
-            </form>
-            </div>          
+      <>
+        <Header />
+        <div className="add-films">
+          <h1>
+            {first
+              ? "It is your first log in! Change password"
+              : "Change password"}
+          </h1>
+          <div className="hr"></div>
+          <div className="err">{count > 0 ? user.error : ""}</div>
+          <div className="err">{pwInterval ? "Timer: " + count : ""}</div>
+          <form onSubmit={changePW}>
+            <label>Old password</label>
+            <div
+              style={{ display: "inline", marginLeft: "1rem" }}
+              className="clickable i"
+              onClick={togglePasswordVisiblity2}
+            >
+              {eye}
+            </div>
+            <input
+              type={passwordShown2 ? "text" : "password"}
+              onChange={pwOldHandler}
+            />
+            <label htmlFor="user-password">Password</label>
+            <div
+              style={{ display: "inline", marginLeft: "1rem" }}
+              className="clickable i"
+              onClick={togglePasswordVisiblity1}
+            >
+              {eye}
+            </div>
+            <input
+              type={passwordShown1 ? "text" : "password"}
+              id="user-password"
+              name="user-password"
+              placeholder=""
+              autoComplete="on"
+              onChange={pHandler}
+              onBlur={pwBlurHandler}
+              value={pwInp}
+            />
+            {!passwordValid && pwInpTouched && (
+              <div className="err">
+                <small>{passwordError}</small>
+              </div>
+            )}
+            <label htmlFor="user-password2">Repeat Password</label>
+            <input
+              type={passwordShown1 ? "text" : "password"}
+              id="user-password2"
+              name="user-password2"
+              placeholder=""
+              autoComplete="on"
+              onChange={p2Handler}
+              onBlur={pw2BlurHandler}
+              value={pw2Inp}
+            />
+            {!passwordSame && (
+              <div className="err">
+                <small>Passwords don't match</small>
+              </div>
+            )}
+            <button type="submit">Submit</button>
+          </form>
+        </div>
         <Footer />
-    </>)
+      </>
+    );
 }
 export default ChangePasswordLab;
