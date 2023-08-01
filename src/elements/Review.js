@@ -55,14 +55,10 @@ const Review = (props) =>{
           .then((res) => {
             let o = res.data;
             if (!o.error) {
+              var offset = new Date().getTimezoneOffset();
               let upd = new Date(o.updatedAt);
-              const now = new Date();
-              const minutesToAdd = now.getTimezoneOffset();
-              upd.setUTCMinutes(upd.getUTCMinutes() + minutesToAdd);
-              let options = { timeZone: "UTC" };
-              let utcString = upd.toLocaleString("en-US", options);
-              let updatedTime = new Date(utcString);
-              o.updatedAt = updatedTime.toISOString();
+              var offsetTime = new Date(upd.getTime() - offset * 60 * 1000);
+              o.updatedAt = offsetTime.toISOString();
               setReviewEdited(o);
             }
           })
