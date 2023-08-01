@@ -111,42 +111,81 @@ const Register = () =>{
     };
     const [passwordShown, setPasswordShown] = useState(false);
     return (
-    <>
-    <Header />
-        <div className="add-films"> 
-            <h1>Register</h1>
-            <div className="hr"></div>
-            <div className='err'>{usernameTaken}</div>
-            <form onSubmit={registerUser}>
-                <label htmlFor="user-name">Name / Full name</label>
-                <input type="text" id="user-name" name="user-name" 
-                aria-describedby="nameHelp" placeholder="This will be displayed as your username" 
-                onChange={uHandler}
-                onBlur={uBlurHandler}
-                value={usernameInp} />
-                {usernameInpTouched &&  !usernameValid && <div className='err'><small>Username can`t be empty</small></div>}         
-            
-                <label htmlFor="user-email">Email Address</label>
-                <input type="email" id="user-email" name="user-email" aria-describedby="emailHelp" placeholder="mypersonalmail123@gmail.com" 
-                onChange={eHandler}
-                onBlur={eBlurHandler}
-                value={emailInp} />                
-                {emailInpTouched && !emailValid && <div className='err'><small>Incorrect format of email (user123@mail.com)</small></div>}
-            
-                <label htmlFor="user-password">Password</label>
-                <input type={passwordShown?"text":"password"} id="user-password" name="user-password"  placeholder="" autoComplete="on"
-                onFocus={randPass}
-                onChange={pHandler}
-                onBlur={pwBlurHandler}
-                value={pwInp} />   
-                <div className="clickable i" onClick={togglePasswordVisiblity}>{eye}</div>           
-                {!passwordValid && pwInpTouched && <div className='err'><small>{passwordError}</small></div>}
-            
-                <button type="submit">Submit</button>
-            </form>
-        <a href="https://movies-app-playlists.netlify.app/user/login">Log in</a>
-            </div>          
+      <>
+        <Header />
+        <div className="add-films">
+          <h1>Register</h1>
+          <div className="hr"></div>
+          <div className="err">{usernameTaken}</div>
+          <form onSubmit={registerUser}>
+            <label htmlFor="user-name">Name / Full name</label>
+            <input
+              type="text"
+              id="user-name"
+              name="user-name"
+              aria-describedby="nameHelp"
+              placeholder="This will be displayed as your username"
+              onChange={uHandler}
+              onBlur={uBlurHandler}
+              value={usernameInp}
+            />
+            {usernameInpTouched && !usernameValid && (
+              <div className="err">
+                <small>Username can`t be empty</small>
+              </div>
+            )}
+
+            <label htmlFor="user-email">Email Address</label>
+            <input
+              type="email"
+              id="user-email"
+              name="user-email"
+              aria-describedby="emailHelp"
+              placeholder="mypersonalmail123@gmail.com"
+              onChange={eHandler}
+              onBlur={eBlurHandler}
+              value={emailInp}
+            />
+            {emailInpTouched && !emailValid && (
+              <div className="err">
+                <small>Incorrect format of email (user123@mail.com)</small>
+              </div>
+            )}
+            <label htmlFor="user-password">Password</label>
+            <div
+              style={{ display: "inline", marginLeft: "1rem" }}
+              className="clickable i"
+              onClick={togglePasswordVisiblity}
+            >
+              {eye}
+            </div>
+            <input
+              type={passwordShown ? "text" : "password"}
+              id="user-password"
+              name="user-password"
+              placeholder=""
+              autoComplete="on"
+              onChange={pHandler}
+              onBlur={pwBlurHandler}
+              value={pwInp}
+            />
+            {!passwordValid && pwInpTouched && (
+              <div className="err">
+                <small>{passwordError}</small>
+              </div>
+            )}
+            <p onClick={randPass} className="clickable-text">
+              Random Password
+            </p>
+
+            <button type="submit">Submit</button>
+          </form>
+          <a href="https://movies-app-playlists.netlify.app/user/login">
+            Log in
+          </a>
+        </div>
         <Footer />
-    </>)
+      </>
+    );
 }
 export default Register;

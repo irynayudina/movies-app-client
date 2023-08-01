@@ -29,7 +29,7 @@
 .clickable-text{
   color: blueviolet;
 }
-.clickable-text:hover{
+.clickable-text:hover, .clickable:hover{
   color: deeppink;
   cursor: pointer;
 }
